@@ -25,3 +25,9 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+@base {
+  .nav {
+    @apply bg-primary !important;
+  }
+}
