@@ -4,6 +4,8 @@ import Users from "./collections/Users";
 import Clases from "./collections/Clases";
 import Posts from "./collections/Posts";
 import Tags from "./collections/Tags";
+import Logo from "./graphics/Logo";
+import Icon from "./graphics/Icon";
 
 export default buildConfig({
   collections: [Users, Clases, Posts, Tags],
@@ -12,5 +14,13 @@ export default buildConfig({
   ],
   typescript: {
     outputFile: path.resolve(__dirname, "../payload-types.ts"),
+  },
+  admin: {
+    components: {
+      graphics: {
+        Logo,
+        Icon,
+      },
+    },
   },
 });
