@@ -24,6 +24,8 @@
   --color-base-900: rgb(232, 242, 240);
   --color-base-950: rgb(232, 242, 240);
   --color-base-1000: rgb(232, 242, 240);
+
+  --theme-elevation-50: white !important;
 }
 
 .nav {
