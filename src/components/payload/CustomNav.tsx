@@ -107,9 +107,6 @@ function MenuItem({ href, selected, children, icon }: any) {
         }`}
       >
         <motion.p className="order-last lg:order-first">{children}</motion.p>
-        {icon && (
-          <Icon width={24} name="logout" variant={icon?.variant || "eye"} />
-        )}
       </motion.li>
     </Link>
   );

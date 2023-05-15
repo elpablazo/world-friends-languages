@@ -7,27 +7,49 @@
   --nav-width: 300px !important;
   --font-body: 'Ubuntu', sans-serif !important;
 
-  --color-base-0: rgba(40, 53, 69);
-  --color-base-50: rgba(40, 53, 69);
-  --color-base-100: rgba(40, 53, 69);
-  --color-base-150: rgba(40, 53, 69);
-  --color-base-200: rgb(65, 113, 112);
-  --color-base-250: rgb(65, 113, 112);
-  --color-base-300: rgb(65, 113, 112);
-  --color-base-350: rgb(65, 113, 112);
-  --color-base-400: rgb(117, 170, 168);
-  --color-base-450: rgb(117, 170, 168);
-  --color-base-500: rgb(117, 170, 168);
+  --color-base-1000: rgba(40, 53, 69);
+  --color-base-950: rgba(40, 53, 69);
+  --color-base-900: rgba(40, 53, 69);
+  --color-base-850: rgba(40, 53, 69);
+  --color-base-800: rgb(65, 113, 112);
+  --color-base-750: rgb(65, 113, 112);
+  --color-base-700: rgb(65, 113, 112);
+  --color-base-650: rgb(65, 113, 112);
+  --color-base-600: rgb(117, 170, 168);
   --color-base-550: rgb(117, 170, 168);
-  --color-base-600: rgb(174, 203, 206);
-  --color-base-650: rgb(174, 203, 206);
-  --color-base-700: rgb(174, 203, 206);
-  --color-base-750: rgb(174, 203, 206);
-  --color-base-800: rgb(232, 242, 240);
-  --color-base-850: rgb(232, 242, 240);
-  --color-base-900: rgb(232, 242, 240);
-  --color-base-950: rgb(232, 242, 240);
-  --color-base-1000: rgb(232, 242, 240);
+  --color-base-500: rgb(117, 170, 168);
+  --color-base-450: rgb(117, 170, 168);
+  --color-base-400: rgb(174, 203, 206);
+  --color-base-350: rgb(174, 203, 206);
+  --color-base-300: rgb(174, 203, 206);
+  --color-base-250: rgb(174, 203, 206);
+  --color-base-200: rgb(232, 242, 240);
+  --color-base-150: rgb(232, 242, 240);
+  --color-base-100: rgb(232, 242, 240);
+  --color-base-50: rgb(232, 242, 240);
+  --color-base-0: rgb(232, 242, 240);
 
   --theme-elevation-50: white !important;
+
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --theme-elevation-50: black !important;
+
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 214, 219, 220;
+    --background-end-rgb: 255, 255, 255;
+  }
+}
+
+.btn--style-primary {
+  @apply bg-gradient-to-r from-primary-dark to-primary-light;
+}
+
+.btn:hover {
+  @apply bg-inherit
 }
