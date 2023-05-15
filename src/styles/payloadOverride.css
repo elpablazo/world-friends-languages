@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --theme-bg: rgba(246, 252, 252, 1) !important;
   --nav-width: 300px !important;
@@ -26,8 +30,4 @@
   --color-base-1000: rgb(232, 242, 240);
 
   --theme-elevation-50: white !important;
-}
-
-.nav {
-  @apply bg-white;
 }

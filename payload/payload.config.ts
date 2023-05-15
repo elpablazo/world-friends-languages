@@ -4,8 +4,9 @@ import Users from "./collections/Users";
 import Clases from "./collections/Clases";
 import Posts from "./collections/Posts";
 import Tags from "./collections/Tags";
-import Logo from "./components/graphics/Logo";
-import Icon from "./components/graphics/Icon";
+import Logo from "../src/components/payload/Logo";
+import Icon from "../src/components/payload/Icon";
+import CustomNav from "../src/components/payload/CustomNav";
 
 export default buildConfig({
   collections: [Users, Clases, Posts, Tags],
@@ -21,6 +22,7 @@ export default buildConfig({
         Logo,
         Icon,
       },
+      Nav: CustomNav,
     },
   },
 });
