@@ -54,16 +54,44 @@ const Cursos: CollectionConfig = {
             "Horarios del curso. Marca cuándo inicia y finaliza el curso, y se generan automáticamente las clases en las fechas dadas.",
           fields: [
             {
-              name: "startDate",
-              type: "date",
-              label: "Fecha de inicio",
-              required: true,
-            },
-            {
-              name: "endDate",
-              type: "date",
-              label: "Fecha de finalización",
-              required: true,
+              type: "row",
+              fields: [
+                {
+                  name: "startDate",
+                  type: "date",
+                  label: "Fecha de inicio",
+                  required: true,
+                  admin: {
+                    date: {
+                      displayFormat: "dd/MM/yyyy",
+                    },
+                  },
+                },
+                {
+                  name: "endDate",
+                  type: "date",
+                  label: "Fecha de finalización",
+                  required: true,
+                  admin: {
+                    date: {
+                      displayFormat: "dd/MM/yyyy",
+                    },
+                  },
+                  validate: (value, allValues) => {
+                    console.log("YYYYYYYYYYYYYYYYYYYYYYY", allValues);
+
+                    // Validamos que la hora de finalización sea mayor a la hora de inicio
+                    const startTime = new Date(allValues.siblingData.startDate);
+                    const endTime = new Date(value);
+
+                    if (endTime > startTime) {
+                      return true;
+                    } else {
+                      return "La fecha de finalización debe ser mayor a la fecha de inicio.";
+                    }
+                  },
+                },
+              ],
             },
             {
               type: "array",
@@ -71,16 +99,40 @@ const Cursos: CollectionConfig = {
               label: "Horarios",
               fields: [
                 {
-                  type: "date",
-                  name: "weekday",
+                  type: "select",
+                  name: "day",
                   label: "Día de la semana",
                   required: true,
-                  admin: {
-                    date: {
-                      pickerAppearance: "dayOnly",
-                      displayFormat: "dddd",
+                  options: [
+                    {
+                      label: "Lunes",
+                      value: "monday",
                     },
-                  },
+                    {
+                      label: "Martes",
+                      value: "tuesday",
+                    },
+                    {
+                      label: "Miércoles",
+                      value: "wednesday",
+                    },
+                    {
+                      label: "Jueves",
+                      value: "thursday",
+                    },
+                    {
+                      label: "Viernes",
+                      value: "friday",
+                    },
+                    {
+                      label: "Sábado",
+                      value: "saturday",
+                    },
+                    {
+                      label: "Domingo",
+                      value: "sunday",
+                    },
+                  ],
                 },
                 {
                   type: "date",
@@ -102,6 +154,17 @@ const Cursos: CollectionConfig = {
                     date: {
                       pickerAppearance: "timeOnly",
                     },
+                  },
+                  validate: (value, allValues) => {
+                    // Validamos que la hora de finalización sea mayor a la hora de inicio
+                    const startTime = new Date(allValues.siblingData.startTime);
+                    const endTime = new Date(value);
+
+                    if (endTime > startTime) {
+                      return true;
+                    } else {
+                      return "La fecha de finalización debe ser mayor a la fecha de inicio.";
+                    }
                   },
                 },
               ],
