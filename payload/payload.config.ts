@@ -34,7 +34,7 @@ export default buildConfig({
         Logo,
         Icon,
       },
-      // Nav: CustomNav,
+      Nav: CustomNav,
     },
   },
 });

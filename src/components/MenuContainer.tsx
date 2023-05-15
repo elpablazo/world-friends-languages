@@ -1,10 +1,6 @@
 import { motion } from "framer-motion";
 
-export default function MenuContainer({
-  items,
-  selected,
-  children = null,
-}: any) {
+export default function MenuContainer({ children = null }: any) {
   return (
     <div className="relative grid lg:grid-cols-12">
       <div className="lg:col-span-3 flex-col gap-6 p-2 bg-dark/5 lg:h-screen w-screen lg:w-auto fixed bottom-0 left-0 lg:relative z-[1]">

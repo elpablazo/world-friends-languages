@@ -29,32 +29,43 @@ const CustomNav = () => {
   return (
     <div className="hidden lg:block relative bg-white min-h-screen h-full w-[420px]">
       <div className="px-4 py-12">
-        <div className="flex justify-center">
-          <Link className="block" href={"/admin"}>
-            <div className="relative h-10">
+        <div className="flex flex-col gap-12">
+          <Link className="!block" href={"/admin"}>
+            <div className="relative flex items-center justify-center h-10">
               <Icon />
             </div>
           </Link>
           <hr />
-          <MenuContainer
+
+          <Menu
             items={[
               {
-                label: "Ventas",
+                label: "Inicio",
                 href: "/admin",
               },
               {
-                label: "Subir productos",
-                href: "/admin/productos/subir",
+                label: "Cursos",
+                href: "/admin/collections/cursos",
               },
               {
-                label: "Configuración",
-                href: "/admin/configuracion",
+                label: "Clases",
+                href: "/admin/collections/clases",
+              },
+              {
+                label: "Blog",
+                href: "/admin/collections/posts",
+              },
+              {
+                label: "Profesores",
+                href: "/admin/collections/users?limit=10&page=1&where%5Bor%5D%5B0%5D%5Band%5D%5B0%5D%5Brol%5D%5Bequals%5D=profesor",
+              },
+              {
+                label: "Alumnos",
+                href: "/admin/collections/users",
               },
             ]}
             selected={pathname}
-          >
-            <div>hola</div>
-          </MenuContainer>
+          />
         </div>
       </div>
     </div>
@@ -63,22 +74,21 @@ const CustomNav = () => {
 
 function Menu({ items, selected }: any) {
   return (
-    <>
-      {items.map(({ href, label, icon }: any) => (
-        <>
-          <MenuItem
-            key={href}
-            href={href}
-            icon={icon}
-            selected={selected === href}
-          >
-            {label}
-          </MenuItem>
-          <hr className="border-dark/5 hidden lg:block" />
-        </>
-      ))}
-
+    <div className="flex">
       <ul className="block relative w-full">
+        {items.map(({ href, label, icon }: any) => (
+          <>
+            <MenuItem
+              key={href}
+              href={href}
+              icon={icon}
+              selected={selected === href}
+            >
+              {label}
+            </MenuItem>
+            <hr className="border-dark/5 hidden lg:block" />
+          </>
+        ))}
         <li
           className={`flex flex-col lg:flex-row gap-2 w-full items-center lg:justify-between px-2 lg:px-6 cursor-pointer`}
           onClick={() => {
@@ -90,15 +100,15 @@ function Menu({ items, selected }: any) {
           </span>
         </li>
       </ul>
-    </>
+    </div>
   );
 }
 
 function MenuItem({ href, selected, children, icon }: any) {
   return (
-    <Link
+    <a
       href={href}
-      className="block relative w-full text-center lg:text-left h-[22px]"
+      className="!block relative w-full text-center lg:text-left py-6"
     >
       {selected && <MenuSelectedIndicator />}
       <motion.li
@@ -108,7 +118,7 @@ function MenuItem({ href, selected, children, icon }: any) {
       >
         <motion.p className="order-last lg:order-first">{children}</motion.p>
       </motion.li>
-    </Link>
+    </a>
   );
 }
 
@@ -123,11 +133,9 @@ const MenuSelectedIndicator = () => {
         },
       }}
       layoutId="menuIndicator"
-      className="absolute w-full h-full pointer-events-none"
+      className="absolute w-full h-full pointer-events-none inset-0"
     >
-      <div className="relative w-full h-full inset-0">
-        <span className="absolute top-1/2 left-1/2 -translate-y-1/2 bg-gradient-to-b lg:bg-gradient-to-l -translate-x-1/2 from-secondary/10 to-secondary/0 w-full lg:w-[calc(100%+1rem)] h-[calc(100%+1rem)] lg:h-[calc(100%+3rem)] border-t-4 lg:border-t-0 lg:border-r-4 border-secondary" />
-      </div>
+      <div className="w-full h-full bg-primary opacity-10"></div>
     </motion.div>
   );
 };
