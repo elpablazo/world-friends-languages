@@ -4,6 +4,7 @@ const Blogs: CollectionConfig = {
   slug: "posts",
   admin: {
     useAsTitle: "title",
+    defaultColumns: ["title", "publishDate", "tags"],
   },
   fields: [
     {
@@ -28,7 +29,18 @@ const Blogs: CollectionConfig = {
       hasMany: true,
       admin: {
         position: "sidebar",
+        description: "Se recomienda usar 3 a 5 etiquetas.",
       },
+    },
+    {
+      name: "publishDate",
+      type: "date",
+      label: "Fecha de publicación",
+      admin: {
+        position: "sidebar",
+        description: "Los posts no serán públicos hasta la fecha indicada.",
+      },
+      defaultValue: () => new Date(),
     },
   ],
 };
