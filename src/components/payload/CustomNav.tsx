@@ -97,12 +97,13 @@ function Menu({ items, selected }: any) {
           </>
         ))}
         <li
-          className={`flex flex-col lg:flex-row gap-2 w-full items-center lg:justify-between px-2 lg:px-6 cursor-pointer`}
+          className={`flex flex-col lg:flex-row gap-4 w-full items-center px-2 lg:px-6 cursor-pointer mt-auto py-6`}
           onClick={() => {
             alert("Cerrando sesión");
           }}
         >
-          <span className="order-last lg:order-first text-center lg:text-left">
+          <Icon variant="salida" />
+          <span className=" text-center lg:text-left font-bold text-lg">
             Salir
           </span>
         </li>
@@ -143,7 +144,7 @@ const MenuSelectedIndicator = () => {
       layoutId="menuIndicator"
       className="absolute w-full h-full pointer-events-none inset-0"
     >
-      <div className="w-full h-full bg-primary opacity-10"></div>
+      <div className="w-full h-full bg-gradient-to-l from-secondary/100 to-secondary/0 opacity-10"></div>
     </motion.div>
   );
 };
