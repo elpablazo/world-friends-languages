@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useConfig, useAuth } from "payload/components/utilities";
-import Icon from "./Icon";
+import Logo from "./Icon";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import MenuContainer from "../MenuContainer";
 import { motion } from "framer-motion";
+import Icon from "../Icon";
 
 const CustomNav = () => {
   const { permissions, user } = useAuth();
@@ -32,7 +33,7 @@ const CustomNav = () => {
         <div className="flex flex-col gap-12">
           <Link className="!block" href={"/admin"}>
             <div className="relative flex items-center justify-center h-10">
-              <Icon />
+              <Logo />
             </div>
           </Link>
           <hr />
@@ -42,26 +43,32 @@ const CustomNav = () => {
               {
                 label: "Inicio",
                 href: "/admin",
+                icon: "casa",
               },
               {
                 label: "Cursos",
                 href: "/admin/collections/cursos",
+                icon: "calendario",
               },
               {
                 label: "Clases",
                 href: "/admin/collections/clases",
+                icon: "webcam",
               },
               {
                 label: "Blog",
                 href: "/admin/collections/posts",
+                icon: "documento",
               },
               {
                 label: "Profesores",
                 href: "/admin/collections/users?limit=10&page=1&where%5Bor%5D%5B0%5D%5Band%5D%5B0%5D%5Brol%5D%5Bequals%5D=profesor",
+                icon: "maletin",
               },
               {
                 label: "Alumnos",
                 href: "/admin/collections/users",
+                icon: "estudiante",
               },
             ]}
             selected={pathname}
@@ -112,11 +119,12 @@ function MenuItem({ href, selected, children, icon }: any) {
     >
       {selected && <MenuSelectedIndicator />}
       <motion.li
-        className={`flex flex-col lg:flex-row gap-2 !z-[1] w-full lg:justify-between px-2 lg:px-6 cursor-pointer items-center ${
+        className={`flex flex-col lg:flex-row gap-4 !z-[1] w-full px-2 lg:px-6 cursor-pointer items-center ${
           selected && "!text-secondary"
         }`}
       >
-        <motion.p className="order-last lg:order-first">{children}</motion.p>
+        {icon && <Icon variant={icon} />}
+        <motion.p className="order-last font-bold text-lg">{children}</motion.p>
       </motion.li>
     </a>
   );
