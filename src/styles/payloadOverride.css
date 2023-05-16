@@ -73,8 +73,5 @@
 }
 
 .btn--style-primary {
-  background-color: rgb(var(--color-base-800));
-  color: rgb(var(--color-base-0));
-  border-color: rgb(var(--color-base-800));
-  
+  @apply bg-gradient-to-r from-primary-dark to-primary-light hover:bg-gradient-to-r hover:from-primary-dark hover:to-primary-light;
 }
