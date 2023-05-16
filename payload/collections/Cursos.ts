@@ -1,22 +1,4 @@
-import { Block, CollectionConfig } from "payload/types";
-
-const QuoteBlock: Block = {
-  slug: "Quote", // required
-  imageURL: "https://google.com/path/to/image.jpg",
-  imageAltText: "A nice thumbnail image to show what this block looks like",
-  fields: [
-    // required
-    {
-      name: "quoteHeader",
-      type: "text",
-      required: true,
-    },
-    {
-      name: "quoteText",
-      type: "text",
-    },
-  ],
-};
+import { CollectionBeforeChangeHook, CollectionConfig } from "payload/types";
 
 const Cursos: CollectionConfig = {
   slug: "cursos",
@@ -78,8 +60,6 @@ const Cursos: CollectionConfig = {
                     },
                   },
                   validate: (value, allValues) => {
-                    console.log("YYYYYYYYYYYYYYYYYYYYYYY", allValues);
-
                     // Validamos que la hora de finalización sea mayor a la hora de inicio
                     const startTime = new Date(allValues.siblingData.startDate);
                     const endTime = new Date(value);
@@ -163,7 +143,7 @@ const Cursos: CollectionConfig = {
                     if (endTime > startTime) {
                       return true;
                     } else {
-                      return "La fecha de finalización debe ser mayor a la fecha de inicio.";
+                      return "La hora de finalización debe ser mayor a la fecha de inicio.";
                     }
                   },
                 },
@@ -187,6 +167,67 @@ const Cursos: CollectionConfig = {
       },
     },
   ],
+  hooks: {
+    // En este hook, creamos las clases automáticamente cuando se crea un curso según los horarios establecidos
+    afterChange: [
+      async ({ doc, req, operation }) => {
+        console.log("doc-----------------", doc);
+
+        if (operation === "create") {
+          // Creamos una clase para cada horario en el periodo especificado
+          const startDate = new Date(doc.startDate);
+          const endDate = new Date(doc.endDate);
+          const days = [
+            "sunday",
+            "monday",
+            "tuesday",
+            "wednesday",
+            "thursday",
+            "friday",
+            "saturday",
+          ];
+          // Guardamos el número de clases que se van a crear
+          let numberOfClassesCreated = 0;
+
+          // Creamos una clase para cada día de la semana
+          for (let i = 0; i < days.length; i++) {
+            const day = days[i];
+
+            // Creamos una clase para cada día de la semana
+            for (
+              let date = startDate;
+              date <= endDate;
+              date.setDate(date.getDate() + 1)
+            ) {
+              // Si el día de la semana de la fecha actual es igual al día de la semana del horario, creamos la clase
+              if (date.getDay() === i) {
+                numberOfClassesCreated++;
+                const startTime = new Date(doc.schedule[0].startTime);
+                const endTime = new Date(doc.schedule[0].endTime);
+
+                // Creamos la clase
+                const newClass = {
+                  name: `${doc.name} - ${numberOfClassesCreated}`,
+                  startDate: startTime,
+                  endDate: endTime,
+                  // Relation to the course
+                  curso: doc.id,
+                };
+
+                // Guardamos la clase
+                const clase = await req.payload.create({
+                  collection: "clases",
+                  data: newClass,
+                });
+              }
+            }
+          }
+        }
+
+        return doc;
+      },
+    ],
+  },
 };
 
 export default Cursos;
