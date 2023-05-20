@@ -2,8 +2,8 @@ import Logo from "./payload/Logo";
 
 const Navbar = () => {
   return (
-    <div className="flex flex-row gap-12 items-center justify-start w-[1128px]sticky left-[76px] top-[0]">
-      <div className="container flex items-center justify-between gap-24">
+    <div className="flex flex-row gap-12 items-center justify-start w-screen sticky top-[0]">
+      <div className="container flex items-center justify-between gap-24 pt-2">
         <Logo />
 
         <div className="flex flex-row gap-12 items-center relative">

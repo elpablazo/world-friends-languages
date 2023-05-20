@@ -8,6 +8,43 @@ import Link from "next/link";
 import MenuContainer from "../MenuContainer";
 import { motion } from "framer-motion";
 import Icon from "../Icon";
+const menuItems = [
+  {
+    label: "Inicio",
+    href: "/admin",
+    icon: "casa",
+  },
+  {
+    label: "Cursos",
+    href: "/admin/collections/cursos",
+    icon: "calendario",
+  },
+  {
+    label: "Clases",
+    href: "/admin/collections/clases",
+    icon: "webcam",
+  },
+  {
+    label: "Blog",
+    href: "/admin/collections/posts",
+    icon: "documento",
+  },
+  {
+    label: "Profesores",
+    href: "/admin/collections/users?limit=10&page=1&where%5Bor%5D%5B0%5D%5Band%5D%5B0%5D%5Brol%5D%5Bequals%5D=profesor",
+    icon: "maletin",
+  },
+  {
+    label: "Alumnos",
+    href: "/admin/collections/users?limit=10&page=1&where%5Bor%5D%5B0%5D%5Band%5D%5B0%5D%5Brol%5D%5Bequals%5D=alumno",
+    icon: "estudiante",
+  },
+  {
+    label: "Ajustes",
+    href: "/admin/account",
+    icon: "engrane",
+  },
+];
 
 const CustomNav = () => {
   const { permissions, user } = useAuth();
@@ -38,46 +75,7 @@ const CustomNav = () => {
           </Link>
           <hr />
 
-          <Menu
-            items={[
-              {
-                label: "Inicio",
-                href: "/admin",
-                icon: "casa",
-              },
-              {
-                label: "Cursos",
-                href: "/admin/collections/cursos",
-                icon: "calendario",
-              },
-              {
-                label: "Clases",
-                href: "/admin/collections/clases",
-                icon: "webcam",
-              },
-              {
-                label: "Blog",
-                href: "/admin/collections/posts",
-                icon: "documento",
-              },
-              {
-                label: "Profesores",
-                href: "/admin/collections/users?limit=10&page=1&where%5Bor%5D%5B0%5D%5Band%5D%5B0%5D%5Brol%5D%5Bequals%5D=profesor",
-                icon: "maletin",
-              },
-              {
-                label: "Alumnos",
-                href: "/admin/collections/users?limit=10&page=1&where%5Bor%5D%5B0%5D%5Band%5D%5B0%5D%5Brol%5D%5Bequals%5D=alumno",
-                icon: "estudiante",
-              },
-              {
-                label: "Ajustes",
-                href: "/admin/account",
-                icon: "engrane",
-              },
-            ]}
-            selected={pathname}
-          />
+          <Menu items={menuItems} selected={pathname} />
         </div>
       </div>
     </div>
@@ -90,14 +88,14 @@ function Menu({ items, selected }: any) {
       <ul className="block relative w-full">
         {items.map(({ href, label, icon }: any) => (
           <>
-            <MenuItem
+            <AdminMenuItem
               key={href}
               href={href}
               icon={icon}
               selected={selected === href}
             >
               {label}
-            </MenuItem>
+            </AdminMenuItem>
             <hr className="border-dark/5 hidden lg:block" />
           </>
         ))}
@@ -117,7 +115,7 @@ function Menu({ items, selected }: any) {
   );
 }
 
-function MenuItem({ href, selected, children, icon }: any) {
+const AdminMenuItem = ({ href, selected, children, icon }: any) => {
   return (
     <a
       href={href}
@@ -130,11 +128,11 @@ function MenuItem({ href, selected, children, icon }: any) {
         }`}
       >
         {icon && <Icon variant={icon} />}
-        <motion.p className="order-last font-bold text-lg">{children}</motion.p>
+        <p className="order-last font-bold text-lg ">{children}</p>
       </motion.li>
     </a>
   );
-}
+};
 
 const MenuSelectedIndicator = () => {
   return (
