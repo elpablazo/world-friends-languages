@@ -70,6 +70,11 @@ const CustomNav = () => {
                 href: "/admin/collections/users",
                 icon: "estudiante",
               },
+              {
+                label: "Ajustes",
+                href: "/admin/account",
+                icon: "engrane",
+              },
             ]}
             selected={pathname}
           />

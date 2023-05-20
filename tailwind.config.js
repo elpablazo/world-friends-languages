@@ -28,6 +28,7 @@ module.exports = {
           DEFAULT: "#aecbce",
           dark: "#9fa8b2",
         },
+        light: "#ffffff",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
