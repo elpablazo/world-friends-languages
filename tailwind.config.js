@@ -51,6 +51,9 @@ module.exports = {
           DEFAULT: "1rem",
         },
       },
+      borderRadius: {
+        DEFAULT: "1.5rem 1.5rem 1.5rem 0",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

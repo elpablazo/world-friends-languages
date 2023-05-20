@@ -1,3 +1,4 @@
+import CardBeneficioCTA from "@/components/CardBeneficioCTA";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
 export interface ILandingPageProps {}
@@ -6,140 +7,49 @@ const LandingPage = ({ ...props }: ILandingPageProps): JSX.Element => {
   return (
     <>
       <Navbar />
-      <div className="bg-gray-light relative min-h-screen">
-        <div className="flex flex-col gap-24 items-center justify-start left-0 pt-[173px] w-full h-full">
-          <div className="pt-14 pb-14 flex flex-row gap-0 items-center justify-start relative">
-            <div className="flex flex-col gap-8 items-start justify-start relative">
-              <div className="text-dark text-left relative self-stretch">
-                Aprende idiomas de manera cómoda y efectiva
-              </div>
-
-              <div className="px-6 py-4 flex flex-row gap-2 items-start justify-center relative bg-gradient-to-t from-primary-light to-primary-dark rounded">
-                <div className="text-light text-center relative">
-                  Empieza gratis
-                </div>
-              </div>
-            </div>
-
-            <Image
-              src="https://placehold.co/253x357/EEE/ccc"
-              alt="Portrait of a woman with a wide smile and thumbs up"
-              title="Portrait of a woman"
-              className="shrink-0 w-[253px] h-[357px] absolute left-[951px] top-[-66px]"
-              width={253}
-              height={357}
-            />
-
-            <Image
-              src="https://placehold.co/99x56/EEE/ccc"
-              alt="Flag of a country"
-              title="Flag"
-              className="rounded-[26.12px_26.12px_0px_26.12px] border-solid border-[rgba(0,0,0,0.10)] border-[1.49px] w-[98.84px] h-[56.15px] absolute left-[835.34px] top-[-45px]"
-              width={99}
-              height={56}
-            />
-
-            <Image
-              src="https://placehold.co/146x84/EEE/ccc"
-              alt="Flag of a country"
-              title="Flag"
-              className="rounded-[36.7px_36.7px_0px_36.7px] border-solid border-[rgba(0,0,0,0.10)] border-[2.1px] w-[146.13px] h-[84px] absolute left-[750px] top-[102.43px]"
-              width={146}
-              height={84}
-            />
-
-            <Image
-              src="https://placehold.co/102x60/EEE/ccc"
-              alt="Flag of a country"
-              title="Flag"
-              className="rounded-[26.12px_26.12px_0px_26.12px] border-solid border-[rgba(0,0,0,0.10)] border-[1.49px] w-[101.89px] h-[59.79px] absolute left-[829px] top-[277.78px]"
-              width={102}
-              height={60}
-            />
-          </div>
-        </div>
-        <div>
-          <div className="flex flex-row gap-8 items-start justify-start self-stretch relative">
-            <div className="flex flex-col items-center justify-between self-stretch flex-1 relative overflow-hidden">
-              <div className="pt-6 pr-4 pb-6 pl-4 flex flex-row gap-4 items-start justify-start self-stretch relative">
-                <div className="flex flex-col gap-2 items-start justify-start relative">
-                  <div className="text-dark text-left relative self-stretch">
-                    Cursos para todos los niveles
-                  </div>
-
-                  <div className="text-dark text-left relative self-stretch">
-                    Descubre nuestra amplia variedad de cursos y clases en línea
-                    para aprender un nuevo idioma.
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-0 items-start justify-start relative">
-                <div className="border-solid border-primary h-0 relative"></div>
-
-                <div className="p-4 flex flex-row gap-2 items-start justify-start self-stretch relative">
-                  <div className="text-primary text-center relative flex-1">
-                    Ver cursos
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="rounded-[24px_24px_24px_0px] flex flex-col items-center justify-between self-stretch flex-1 relative overflow-hidden"
-              style={{
-                background:
-                  "radial-gradient(closest-side, rgba(255, 220, 204, 0.30) 0%,rgba(255, 220, 204, 0.00) 79.6875%)",
+      <div className="space-y-16 relative min-h-screen">
+        <Image
+          src="/images/demo/heroBanner01.jpg"
+          alt="Banner principal"
+          priority
+          width={5120}
+          height={1552}
+          className="aspect-[5120/1552] w-full h-auto"
+        />
+        <div className="container ">
+          <div className="grid grid-cols-3 gap-8 items-stretch relative">
+            <CardBeneficioCTA
+              titulo="Cursos para todos los niveles"
+              cta={{
+                label: "Ver cursos",
+                href: "/",
               }}
             >
-              <div className="pt-6 pr-4 pb-6 pl-4 flex flex-row gap-4 items-start justify-start self-stretch relative">
-                <div className="flex flex-col gap-2 items-start justify-start relative">
-                  <div className="text-dark text-left relative self-stretch">
-                    Clases personalizadas
-                  </div>
+              Descubre nuestra amplia variedad de cursos y clases en línea para
+              aprender un nuevo idioma.
+            </CardBeneficioCTA>
 
-                  <div className="text-dark text-left relative self-stretch">
-                    Mejora tu dominio del idioma con clases 1 a 1 impartidas por
-                    nuestros profesores altamente calificados.
-                  </div>
-                </div>
-              </div>
+            <CardBeneficioCTA
+              titulo="Clases personalizadas"
+              cta={{
+                label: "Agenda una clase",
+                href: "/",
+              }}
+            >
+              Mejora tu dominio del idioma con clases 1 a 1 impartidas por
+              nuestros profesores altamente calificados.
+            </CardBeneficioCTA>
 
-              <div className="flex flex-col gap-0 items-start justify-start relative">
-                <div className="border-solid border-secondary h-0 relative"></div>
-
-                <div className="p-4 flex flex-row gap-2 items-start justify-start self-stretch relative">
-                  <div className="text-secondary text-center relative flex-1">
-                    Agenda una clase
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className=" flex flex-col items-center justify-between self-stretch flex-1 relative overflow-hidden">
-              <div className="pt-6 pr-4 pb-6 pl-4 flex flex-row gap-4 items-start justify-start self-stretch relative">
-                <div className="flex flex-col gap-2 items-start justify-start relative">
-                  <div className="text-dark text-left relative self-stretch">
-                    Certificación asegurada
-                  </div>
-
-                  <div className="text-dark text-left relative self-stretch">
-                    Prepara tu examen de certificación en el idioma que
-                    necesitas con nuestras cursos en línea.
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-0 items-start justify-start relative">
-                <div className="border-solid border-primary h-0 relative"></div>
-
-                <div className="p-4 flex flex-row gap-2 items-start justify-start self-stretch relative">
-                  <div className="text-primary text-center relative flex-1">
-                    Comienza gratis
-                  </div>
-                </div>
-              </div>
-            </div>
+            <CardBeneficioCTA
+              titulo="Certificación asegurada"
+              cta={{
+                label: "Ver cursos",
+                href: "/",
+              }}
+            >
+              Prepara tu examen de certificación en el idioma que necesitas con
+              nuestras cursos en línea.
+            </CardBeneficioCTA>
           </div>
 
           <div className="bg-light flex flex-row gap-10 items-center justify-center self-stretch relative">

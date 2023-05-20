@@ -19,7 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es-MX">
-      <body className={ubuntu.className}>{children}</body>
+      <body className={`${ubuntu.className} overflow-x-clip max-w-screen`}>
+        {children}
+      </body>
     </html>
   );
 }
