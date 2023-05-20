@@ -20,12 +20,22 @@ const Clases: CollectionConfig = {
           type: "date",
           label: "Fecha de inicio",
           required: true,
+          admin: {
+            date: {
+              pickerAppearance: "dayAndTime",
+            },
+          },
         },
         {
           name: "endDate",
           type: "date",
           label: "Fecha de finalización",
           required: true,
+          admin: {
+            date: {
+              pickerAppearance: "dayAndTime",
+            },
+          },
         },
       ],
     },
