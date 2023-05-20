@@ -151,6 +151,24 @@ const Cursos: CollectionConfig = {
             },
           ],
         },
+
+        // Tab de costo
+        {
+          label: "Precio",
+          description: "Precio del curso.",
+          fields: [
+            {
+              name: "price",
+              type: "number",
+              label: "Precio",
+              required: true,
+              min: 0,
+              admin: {
+                step: 0.01,
+              },
+            },
+          ],
+        },
       ],
     },
 
@@ -168,11 +186,6 @@ const Cursos: CollectionConfig = {
     },
   ],
   hooks: {
-    beforeChange: [
-      async ({ req, operation, originalDoc }) => {
-        console.log("originalDoc: ", originalDoc);
-      },
-    ],
     // En este hook, creamos las clases automáticamente cuando se crea un curso según los horarios establecidos
     afterChange: [
       async ({ doc, req, operation }) => {
@@ -200,7 +213,7 @@ const Cursos: CollectionConfig = {
           for (let i = 0; i < schedules.length; i++) {
             const schedule = schedules[i];
 
-            // tODO: HACER CONCORDAR EL NÚMERO DE CLASE (PORQUE PRIMERO SE CREAN TODAS LAS CLASES DE UN HORARIO EJ: LUNES, Y LUEGO LAS DE MARTES, ETC. Y ENTONCES LAS DE MARTES NO TIENEN EL NÚMERO CORRECTO)
+            // T  ODO: HACER CONCORDAR EL NÚMERO DE CLASE (PORQUE PRIMERO SE CREAN TODAS LAS CLASES DE UN HORARIO EJ: LUNES, Y LUEGO LAS DE MARTES, ETC. Y ENTONCES LAS DE MARTES NO TIENEN EL NÚMERO CORRECTO)
 
             // Creamos una clase para cada día de la semana
             for (

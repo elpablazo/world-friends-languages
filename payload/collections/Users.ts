@@ -10,9 +10,6 @@ const Users: CollectionConfig = {
   admin: {
     useAsTitle: "email",
   },
-  access: {
-    read: () => true,
-  },
   fields: [
     {
       type: "tabs",
@@ -48,51 +45,33 @@ const Users: CollectionConfig = {
             },
           ],
         },
+      ],
+    },
 
-        // Tab de roles
+    // Sidebar
+    {
+      name: "rol",
+      label: "Rol",
+      type: "select",
+      admin: {
+        position: "sidebar",
+      },
+      options: [
         {
-          label: "Roles",
-          description: "Los roles que otorgan o niegan permisos al usuario.",
-          fields: [
-            {
-              name: "rol",
-              label: "Rol",
-              type: "select",
-              hasMany: true,
-              options: [
-                {
-                  label: "Director",
-                  value: "director",
-                },
-                {
-                  label: "Profesor",
-                  value: "profesor",
-                },
-                {
-                  label: "Alumno",
-                  value: "alumno",
-                },
-                {
-                  label: "Editor",
-                  value: "editor",
-                },
-              ],
-            },
-          ],
+          label: "Director",
+          value: "director",
         },
-
-        // Tab de clases
         {
-          label: "Clases",
-          description:
-            "Las clases que le pertenecen o a las que están inscritos el usuario.",
-          fields: [
-            {
-              type: "relationship",
-              relationTo: "clases",
-              name: "Clases",
-            },
-          ],
+          label: "Profesor",
+          value: "profesor",
+        },
+        {
+          label: "Alumno",
+          value: "alumno",
+        },
+        {
+          label: "Editor",
+          value: "editor",
         },
       ],
     },
