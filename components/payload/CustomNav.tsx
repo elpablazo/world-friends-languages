@@ -67,7 +67,7 @@ const CustomNav = () => {
               },
               {
                 label: "Alumnos",
-                href: "/admin/collections/users",
+                href: "/admin/collections/users?limit=10&page=1&where%5Bor%5D%5B0%5D%5Band%5D%5B0%5D%5Brol%5D%5Bequals%5D=alumno",
                 icon: "estudiante",
               },
               {
