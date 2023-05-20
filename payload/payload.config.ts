@@ -8,9 +8,9 @@ import Posts from "./collections/Posts";
 import Tags from "./collections/Tags";
 import Cursos from "./collections/Cursos";
 
-import Logo from "../src/components/payload/Logo";
-import Icon from "../src/components/payload/Icon";
-import CustomNav from "../src/components/payload/CustomNav";
+import Logo from "@/components/payload/Logo";
+import Icon from "@/components/payload/Icon";
+import CustomNav from "@/components/payload/CustomNav";
 
 // Plugins
 import seo from "@payloadcms/plugin-seo";

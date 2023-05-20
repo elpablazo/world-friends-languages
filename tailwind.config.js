@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./payload/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -22,6 +22,12 @@ module.exports = {
           dark: "#00AAA0",
         },
         secondary: "#F39367",
+        gray: {
+          light: "#e8f2f0",
+          mid: "#edeff1",
+          DEFAULT: "#aecbce",
+          dark: "#9fa8b2",
+        },
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
