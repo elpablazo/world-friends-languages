@@ -40,6 +40,11 @@ const menuItems = [
     icon: "estudiante",
   },
   {
+    label: "Carritos",
+    href: "/admin/collections/carritos",
+    icon: "carrito",
+  },
+  {
     label: "Ajustes",
     href: "/admin/account",
     icon: "engrane",
