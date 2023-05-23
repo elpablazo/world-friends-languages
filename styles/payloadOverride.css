@@ -6,6 +6,8 @@
   --theme-bg: rgba(246, 252, 252, 1) !important;
   --nav-width: 300px !important;
   --font-body: 'Ubuntu', sans-serif !important;
+  --font-mono: 'Ubuntu', sans-serif !important;
+  --font-serif: 'Ubuntu', sans-serif !important;
 
   --color-base-1000: rgba(40, 53, 69);
   --color-base-950: rgba(40, 53, 69);
@@ -35,12 +37,17 @@
   --background-start-rgb: 243, 251, 251;
   --background-end-rgb: 255, 255, 255;
 }
+* {
+  letter-spacing: 0 !important;
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --theme-bg: rgba(246, 252, 252, 1) !important;
+  --theme-bg: rgba(246, 252, 252, 1) !important;
   --nav-width: 300px !important;
   --font-body: 'Ubuntu', sans-serif !important;
+  --font-mono: 'Ubuntu', sans-serif !important;
+  --font-serif: 'Ubuntu', sans-serif !important;
 
   --color-base-1000: rgba(40, 53, 69);
   --color-base-950: rgba(40, 53, 69);
@@ -70,8 +77,10 @@
   --background-start-rgb: 243, 251, 251;
   --background-end-rgb: 255, 255, 255;
   }
+
 }
 
 .btn--style-primary {
   @apply bg-gradient-to-r from-primary-dark to-primary-light hover:bg-gradient-to-r hover:from-primary-dark hover:to-primary-light;
 }
+

@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Ubuntu } from "next/font/google";
 

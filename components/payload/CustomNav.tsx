@@ -70,8 +70,8 @@ const CustomNav = () => {
   const pathname = usePathname();
 
   return (
-    <div className="hidden lg:block relative bg-white min-h-screen h-full w-[420px]">
-      <div className="px-4 py-12">
+    <div className="hidden lg:block bg-white min-h-screen h-full w-[420px] sticky top-0 left-0">
+      <div className="px-4 py-12 relative">
         <div className="flex flex-col gap-12">
           <Link className="!block" href={"/admin"}>
             <div className="relative flex items-center justify-center h-10">
