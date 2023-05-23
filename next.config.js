@@ -6,7 +6,7 @@ module.exports = withPayload(
     // your Next config here
     images: {
       dangerouslyAllowSVG: true,
-      domains: ["placehold.co"],
+      domains: ["placehold.co", "res.cloudinary.com", "randomuser.me"],
     },
   },
   {

@@ -1,5 +1,6 @@
 import CardBeneficioCTA from "@/components/CardBeneficioCTA";
 import Navbar from "@/components/Navbar";
+import ReviewsSection from "@/components/ReviewsSection";
 import Image from "next/image";
 export interface ILandingPageProps {}
 
@@ -16,9 +17,10 @@ const LandingPage = ({ ...props }: ILandingPageProps): JSX.Element => {
           height={1552}
           className="aspect-[5120/1552] w-full h-auto"
         />
-        <div className="container ">
-          <div className="grid grid-cols-3 gap-8 items-stretch relative">
+        <div className="container">
+          <div className="grid md:grid-cols-3 gap-8 items-stretch relative">
             <CardBeneficioCTA
+              icono="niveles"
               titulo="Cursos para todos los niveles"
               cta={{
                 label: "Ver cursos",
@@ -30,6 +32,8 @@ const LandingPage = ({ ...props }: ILandingPageProps): JSX.Element => {
             </CardBeneficioCTA>
 
             <CardBeneficioCTA
+              color="secondary"
+              icono="webcam"
               titulo="Clases personalizadas"
               cta={{
                 label: "Agenda una clase",
@@ -41,6 +45,7 @@ const LandingPage = ({ ...props }: ILandingPageProps): JSX.Element => {
             </CardBeneficioCTA>
 
             <CardBeneficioCTA
+              icono="certificado"
               titulo="Certificación asegurada"
               cta={{
                 label: "Ver cursos",
@@ -52,56 +57,7 @@ const LandingPage = ({ ...props }: ILandingPageProps): JSX.Element => {
             </CardBeneficioCTA>
           </div>
 
-          <div className="bg-light flex flex-row gap-10 items-center justify-center self-stretch relative">
-            <div className="flex flex-row gap-2 items-center justify-start w-[448px] relative">
-              <Image
-                className="rounded-full w-16 h-16 relative"
-                src="https://placehold.co/64x64/EEE/ccc"
-                alt="image-6"
-                width={64}
-                height={64}
-              />
-
-              <div className="flex flex-col gap-2 items-start justify-start flex-1 relative">
-                <div className="text-dark text-left relative">Obed Vargas</div>
-
-                <div className="flex flex-row gap-1 items-start justify-start relative"></div>
-
-                <div className="text-[#000000] text-left relative self-stretch">
-                  Quisiera agradecer por el rápido aprendizaje de calidad!
-                  Recomiendo esta escuela como una buena opción para estudiar
-                  idiomas, principalmente por los profesores y la interacción
-                  con nativos del Idioma
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-row gap-2 items-center justify-start w-[448px] relative">
-              <Image
-                src="https://placehold.co/200x100/EEE/ccc"
-                alt="World Friends Languages logo"
-                width={200}
-                height={100}
-              />
-
-              <div className="flex flex-col gap-2 items-start justify-start flex-1 relative">
-                <div className="text-dark text-left relative">
-                  Alfonso Carranza García
-                </div>
-
-                <div className="flex flex-row gap-1 items-start justify-start relative"></div>
-
-                <div
-                  className="text-[#000000] text-left relative self-stretch"
-                  style={{
-                    font: "var(--base, 300 16px/20px 'Ubuntu', sans-serif)",
-                  }}
-                >
-                  Excelente escuela de idiomas!! Muy recomendable
-                </div>
-              </div>
-            </div>
-          </div>
+          <ReviewsSection />
 
           <div className="flex flex-row gap-[163px] items-center justify-start w-[1128px] relative">
             <div className="self-stretch flex-1 relative">
