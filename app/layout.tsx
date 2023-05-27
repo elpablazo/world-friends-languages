@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es-MX">
+    <html lang="es-MX" className="bg-light text-dark antialiased">
       <body className={`${ubuntu.className} overflow-x-clip max-w-screen`}>
         {children}
       </body>

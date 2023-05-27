@@ -41,7 +41,7 @@ const ReviewsSection = () => {
     },
   ];
   return (
-    <div className="bg-white w-full py-12 lg:py-24">
+    <div className="bg-white w-full pt-12 lg:pt-24 pb-8 lg:pb-18">
       <div className="container flex flex-col gap-6 lg:gap-12">
         <Swiper
           className="w-full"

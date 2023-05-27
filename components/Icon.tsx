@@ -30,7 +30,8 @@ export interface IIconProps {
     | "estrella-llena"
     | "facebook"
     | "instagram"
-    | "correo";
+    | "correo"
+    | "menu";
   extraClassName?: string;
 }
 
@@ -899,6 +900,40 @@ const Icon = ({ variant, extraClassName }: IIconProps) => {
           </g>
         </svg>
       );
+    case "menu":
+      return (
+        <svg
+          className={`w-6 h-6 ${extraClassName}`}
+          viewBox="0 0 32 32"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g>
+            <path
+              d="M4 8H28"
+              className="stroke-current"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M4 16H28"
+              className="stroke-current"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <path
+              d="M4 24H28"
+              className="stroke-current"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </g>
+        </svg>
+      );
+
     default:
       return null;
   }
