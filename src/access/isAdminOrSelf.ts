@@ -1,4 +1,4 @@
-import { Access } from "payload/types";
+import { Access, FieldAccess } from "payload/types";
 
 export const isAdminOrSelf: Access = ({ req: { user } }) => {
   if (user) {
@@ -11,6 +11,14 @@ export const isAdminOrSelf: Access = ({ req: { user } }) => {
         equals: user.id,
       },
     };
+  }
+
+  return false;
+};
+
+export const isAdminOrSelfFieldLevel: FieldAccess = ({ req: { user }, id }) => {
+  if (id === user?.id) {
+    return true;
   }
 
   return false;
