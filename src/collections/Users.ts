@@ -12,6 +12,7 @@ const Users: CollectionConfig = {
     create: isAdmin,
     update: isAdminOrSelf,
     delete: isAdmin,
+    // Todo: un profesor no debe poder editar el auth de otro profesor
   },
   fields: [
     // Nombres y apellidos
