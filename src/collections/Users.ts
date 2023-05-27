@@ -1,4 +1,6 @@
 import { CollectionConfig } from "payload/types";
+import { isAdmin, isAdminFieldLevel } from "../access/isAdmin";
+import { isAdminOrSelf } from "../access/isAdminOrSelf";
 
 const Users: CollectionConfig = {
   slug: "users",
@@ -7,88 +9,63 @@ const Users: CollectionConfig = {
     useAsTitle: "email",
   },
   access: {
-    read: () => true,
+    create: isAdmin,
+    update: isAdminOrSelf,
+    delete: isAdmin,
   },
   fields: [
+    // Nombres y apellidos
     {
-      type: "tabs",
-      tabs: [
-        // Tab de información personal
+      type: "row",
+      fields: [
         {
-          label: "Información personal",
-          description: "Información personal relacionada al usuario.",
-
-          fields: [
-            // Nombres y apellidos
-            {
-              type: "row",
-              fields: [
-                {
-                  label: "Nombre(s)",
-                  name: "nombre",
-                  type: "text",
-                },
-                {
-                  label: "Apellido(s)",
-                  name: "apellidos",
-                  type: "text",
-                },
-              ],
-            },
-
-            // Teléfono
-            {
-              label: "Teléfono",
-              name: "telefono",
-              type: "text",
-            },
-          ],
+          type: "text",
+          label: "Nombre(s)",
+          name: "nombre",
+          required: true,
         },
-
-        // Tab de roles
         {
-          label: "Roles",
-          description: "Los roles que otorgan o niegan permisos al usuario.",
-          fields: [
-            {
-              name: "rol",
-              label: "Rol",
-              type: "select",
-              hasMany: true,
-              options: [
-                {
-                  label: "Director",
-                  value: "director",
-                },
-                {
-                  label: "Profesor",
-                  value: "profesor",
-                },
-                {
-                  label: "Alumno",
-                  value: "alumno",
-                },
-                {
-                  label: "Editor",
-                  value: "editor",
-                },
-              ],
-            },
-          ],
+          type: "text",
+          label: "Apellido(s)",
+          name: "apellidos",
         },
+      ],
+    },
 
-        // Tab de clases
+    // Teléfono
+    {
+      type: "text",
+      label: "Teléfono",
+      name: "telefono",
+      minLength: 10,
+      maxLength: 10,
+      required: true,
+    },
+
+    // Sidebar Panel
+    {
+      name: "roles",
+      label: "Rol",
+      type: "select",
+      hasMany: true,
+      required: true,
+      access: {
+        create: isAdminFieldLevel,
+        update: isAdminFieldLevel,
+      },
+      admin: {
+        position: "sidebar",
+        description:
+          "Los roles que otorgan o niegan permisos al usuario. Puede tener más de un rol.",
+      },
+      options: [
         {
-          label: "Clases",
-          description:
-            "Las clases que le pertenecen o a las que están inscritos el usuario.",
-          fields: [
-            {
-              type: "relationship",
-              relationTo: "clases",
-              name: "Clases",
-            },
-          ],
+          label: "Director",
+          value: "admin",
+        },
+        {
+          label: "Profesor",
+          value: "teacher",
         },
       ],
     },
