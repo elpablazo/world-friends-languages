@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate:types": "cross-env PAYLOAD_CONFIG_PATH=payload/payload.config.ts payload generate:types"
   },
   "devDependencies": {
     "@payloadcms/next-payload": "^0.0.23",
@@ -33,6 +34,9 @@
     "typescript": "5.0.4"
   },
   "dependencies": {
-    "@payloadcms/plugin-seo": "^1.0.10"
+    "@payloadcms/plugin-seo": "^1.0.10",
+    "axios": "^1.4.0",
+    "cross-env": "^7.0.3",
+    "zustand": "^4.3.8"
   }
 }
