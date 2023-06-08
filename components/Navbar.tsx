@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex flex-row gap-12 items-center justify-start w-screen sticky top-[0] z-[10]">
+    <div className="flex flex-row gap-12 items-center justify-start w-screen sticky top-[0] z-[10] bg-gradient-to-b from-light/100 via-light/20 to-light/0 pb-32 -mb-32">
       <div
         className={`container flex items-center justify-between gap-24 py-4`}
       >
