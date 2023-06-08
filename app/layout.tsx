@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Ubuntu } from "next/font/google";
 
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="es-MX" className="bg-light text-dark antialiased">
       <body className={`${ubuntu.className} overflow-x-clip max-w-screen`}>
+        <Navbar />
         {children}
       </body>
     </html>

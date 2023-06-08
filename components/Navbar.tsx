@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Logo from "./payload/Logo";
 import Icon from "./Icon";
+import Link from "next/link";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,11 +31,11 @@ const Navbar = () => {
 
           <div className="text-dark text-center">Marco teórico</div>
 
-          <div className="hidden md:block">
+          <Link href="/ingresa" className="hidden md:block">
             <div className="bg-secondary rounded flex flex-row gap-2 items-start justify-center relative px-3 py-1">
               <div className="text-light text-center">Ingresa</div>
             </div>
-          </div>
+          </Link>
         </div>
         <div className="lg:hidden cursor-pointer" onClick={toggleMenu}>
           <Icon variant={"menu"} />
