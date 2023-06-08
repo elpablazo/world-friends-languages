@@ -9,10 +9,12 @@ import Icon from "@/components/Icon";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 interface RegistroFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function RegistroForm({ className, ...props }: RegistroFormProps) {
+  const router = useRouter();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
   async function onSubmit(event: React.SyntheticEvent) {
@@ -21,6 +23,7 @@ export function RegistroForm({ className, ...props }: RegistroFormProps) {
 
     setTimeout(() => {
       setIsLoading(false);
+      router.push("/registrate/como-usaras-la-plataforma");
     }, 3000);
   }
 
@@ -113,7 +116,7 @@ export function RegistroForm({ className, ...props }: RegistroFormProps) {
             />
           </div>
           <Button disabled={isLoading}>
-            {isLoading ? <Icon variant={"reloj"} /> : "Ingresar"}
+            {isLoading ? <Icon variant={"reloj"} /> : "Crear cuenta"}
           </Button>
         </div>
       </form>
