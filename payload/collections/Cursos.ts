@@ -34,6 +34,35 @@ const Cursos: CollectionConfig = {
               type: "richText",
               required: true,
             },
+            {
+              name: "modalidad",
+              label: "Modalidad",
+              type: "text",
+              admin: {
+                description:
+                  "Modalidad del curso (en línea, en vivo, grabada, etc.) y el número de clases por semana.",
+              },
+              required: true,
+            },
+            {
+              name: "objetivos",
+              label: "Objetivos",
+              type: "richText",
+              required: true,
+              admin: {
+                description: "Objetivos del curso. Escribir en forma de lista.",
+              },
+            },
+            {
+              name: "temario",
+              label: "Temario",
+              type: "richText",
+              required: true,
+              admin: {
+                description:
+                  "Temario del curso. Recomendado escribir en forma de lista, con los temas principales en negritas.",
+              },
+            },
           ],
         },
 
@@ -189,8 +218,28 @@ const Cursos: CollectionConfig = {
       hasMany: true,
       admin: {
         position: "sidebar",
-        description: "Elige el idioma del curso.",
+        description:
+          "Elige el idioma del curso y dos etiquetas más. (Ej. nivel, tipo de curso, etc.)",
       },
+    },
+    {
+      name: "profesor",
+      type: "relationship",
+      label: "Profesor",
+      relationTo: "users",
+      admin: {
+        position: "sidebar",
+        description: "Elige el profesor que impartirá el curso.",
+      },
+      filterOptions: () => {
+        // Filtramos los usuarios que sean profesores
+        return {
+          role: {
+            equals: "profesor",
+          },
+        };
+      },
+      required: true,
     },
   ],
   hooks: {
@@ -198,7 +247,6 @@ const Cursos: CollectionConfig = {
     afterChange: [
       async ({ doc, req, operation }) => {
         if (operation === "create") {
-          console.log(doc);
           // Creamos una clase para cada horario en el periodo especificado
           const startDate = new Date(doc.startDate);
           const endDate = new Date(doc.endDate);
@@ -249,15 +297,10 @@ const Cursos: CollectionConfig = {
                   collection: "clases",
                   data: newClass,
                 });
-
-                // Imprimimos la fecha de la clase y el título
-                console.log("Clase creada: ", date, " -", clase.name);
               }
             }
           }
         }
-
-        console.log("Terminé.");
 
         return doc;
       },
