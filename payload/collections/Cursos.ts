@@ -1,9 +1,17 @@
 import { CollectionBeforeChangeHook, CollectionConfig } from "payload/types";
+import { isAdmin } from "../access/isAdmin";
 
 const Cursos: CollectionConfig = {
   slug: "cursos",
   admin: {
     useAsTitle: "name",
+    hideAPIURL: true,
+  },
+  access: {
+    read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     {
@@ -181,7 +189,7 @@ const Cursos: CollectionConfig = {
       hasMany: true,
       admin: {
         position: "sidebar",
-        description: "Elije el idioma del curso.",
+        description: "Elige el idioma del curso.",
       },
     },
   ],

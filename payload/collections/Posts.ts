@@ -5,6 +5,7 @@ const Blogs: CollectionConfig = {
   admin: {
     useAsTitle: "title",
     defaultColumns: ["title", "publishDate", "tags"],
+    hideAPIURL: true,
   },
   fields: [
     {
