@@ -17,9 +17,9 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          light: "#00A0AA",
+          light: "#00AAA0",
           DEFAULT: "#01A6A5",
-          dark: "#00AAA0",
+          dark: "#00A0AA",
         },
         secondary: "#F39367",
         gray: {
@@ -52,7 +52,7 @@ module.exports = {
         },
       },
       borderRadius: {
-        DEFAULT: "1.5rem 1.5rem 1.5rem 0",
+        DEFAULT: "1rem 1rem 1rem 0",
         "12vmin": "12vmin 12vmin 12vmin 0",
       },
       backgroundImage: {

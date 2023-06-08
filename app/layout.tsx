@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Ubuntu } from "next/font/google";
+import Footer from "@/components/footer";
 
 const ubuntu = Ubuntu({
   weight: ["400", "700"],
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body className={`${ubuntu.className} overflow-x-clip max-w-screen`}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
