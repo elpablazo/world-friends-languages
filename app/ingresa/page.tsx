@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const Page = (): JSX.Element => {
@@ -26,6 +27,9 @@ const Page = (): JSX.Element => {
           <p className="text-center">
             Inicia sesión para acceder a tus clases y cursos.
           </p>
+          <Button variant="outline" size="lg" className="w-full">
+            Iniciar sesión
+          </Button>
         </div>
         {/* End of Right col */}
       </div>
