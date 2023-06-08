@@ -123,7 +123,7 @@ export function RegistroForm({ className, ...props }: RegistroFormProps) {
 
       <div className="flex">
         <Link className="link block mx-auto text-center" href="/ingresa">
-          Aún no tengo cuenta
+          Ya tengo cuenta
         </Link>
       </div>
     </div>

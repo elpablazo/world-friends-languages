@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Ubuntu } from "next/font/google";
 import Footer from "@/components/footer";
+import { Toaster } from "@/components/ui/toaster";
 
 const ubuntu = Ubuntu({
   weight: ["400", "700"],
@@ -24,6 +25,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <Toaster />
       </body>
     </html>
   );

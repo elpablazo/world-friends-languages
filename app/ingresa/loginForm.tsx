@@ -74,7 +74,7 @@ export function LoginForm({ className, ...props }: LoginFormProps) {
       </Button>
       <div className="flex">
         <Link className="link block mx-auto text-center" href="/registrate">
-          Ya tengo cuenta
+          Aún no tengo cuenta
         </Link>
       </div>
     </div>
