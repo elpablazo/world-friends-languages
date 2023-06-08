@@ -31,17 +31,17 @@ const menuItems = [
   },
   {
     label: "Profesores",
-    href: "/admin/collections/users?limit=10&page=1&where%5Bor%5D%5B0%5D%5Band%5D%5B0%5D%5Brol%5D%5Bequals%5D=profesor",
+    href: "/admin/collections/users",
     icon: "maletin",
   },
   {
     label: "Alumnos",
-    href: "/admin/collections/users?limit=10&page=1&where%5Bor%5D%5B0%5D%5Band%5D%5B0%5D%5Brol%5D%5Bequals%5D=alumno",
+    href: "/admin/collections/students",
     icon: "estudiante",
   },
   {
-    label: "Carritos",
-    href: "/admin/collections/carritos",
+    label: "Órdenes",
+    href: "/admin/collections/ordenes",
     icon: "carrito",
   },
   {

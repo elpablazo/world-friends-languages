@@ -1,18 +1,26 @@
 import { CollectionConfig } from "payload/types";
-import { isAdmin } from "../access/isAdmin";
 
-const Users: CollectionConfig = {
-  slug: "users",
+import { isAdmin, isAdminFieldLevel } from "../access/isAdmin";
+import { isAdminOrTeacherOrSelf } from "../access/isAdminOrTeacherOrSelf";
+import { isAdminOrSelf } from "../access/isAdminOrSelf";
+
+const Students: CollectionConfig = {
+  slug: "students",
   labels: {
-    singular: "Usuario",
-    plural: "Usuarios",
+    singular: "Estudiante",
+    plural: "Estudiantes",
   },
   auth: true,
   admin: {
     useAsTitle: "email",
     hideAPIURL: true,
   },
-
+  access: {
+    read: isAdminOrTeacherOrSelf,
+    create: () => true,
+    update: isAdminOrSelf,
+    delete: isAdmin,
+  },
   fields: [
     {
       type: "tabs",
@@ -37,7 +45,6 @@ const Users: CollectionConfig = {
                   label: "Apellido(s)",
                   name: "apellidos",
                   type: "text",
-                  required: true,
                 },
               ],
             },
@@ -61,23 +68,21 @@ const Users: CollectionConfig = {
       admin: {
         position: "sidebar",
       },
-      required: true,
+      defaultValue: "student",
       options: [
         {
-          label: "Director",
-          value: "director",
-        },
-        {
-          label: "Profesor",
-          value: "profesor",
-        },
-        {
-          label: "Editor",
-          value: "editor",
+          label: "Estudiante",
+          value: "student",
         },
       ],
+      required: true,
+      access: {
+        read: () => true,
+        create: isAdminFieldLevel,
+        update: () => false,
+      },
     },
   ],
 };
 
-export default Users;
+export default Students;

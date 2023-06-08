@@ -4,6 +4,7 @@ const Clases: CollectionConfig = {
   slug: "clases",
   admin: {
     useAsTitle: "name",
+    hideAPIURL: true,
   },
   fields: [
     {
