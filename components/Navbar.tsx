@@ -3,6 +3,9 @@ import { useState } from "react";
 import Logo from "./payload/Logo";
 import Icon from "./Icon";
 import Link from "next/link";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Label } from "./ui/label";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,23 +21,39 @@ const Navbar = () => {
       >
         <Logo />
 
-        <div className="hidden lg:flex flex-row gap-12 items-center relative">
-          <div className="bg-gray-light rounded pt-2 pr-4 pb-2 pl-4 flex flex-row gap-2 items-center justify-start relative">
-            <div className="text-dark text-center relative">
-              Busca clases o cursos
-            </div>
+        <div className="hidden lg:flex flex-row gap-12 items-center relative w-full">
+          <div className="grid gap-1 grow">
+            <Label className="sr-only" htmlFor="search">
+              Buscar
+            </Label>
+            <Input
+              id="search"
+              placeholder="Buscar"
+              type="text"
+              autoCapitalize="none"
+              autoComplete="off"
+              autoCorrect="off"
+              disabled={false}
+              className="w-full"
+            />
           </div>
 
-          <div className="text-dark text-center">Ver cursos</div>
+          <div className="text-dark text-center whitespace-nowrap font-bold">
+            Ver cursos
+          </div>
 
-          <div className="text-dark text-center">Clases 1 a 1</div>
+          <div className="text-dark text-center whitespace-nowrap font-bold">
+            Clases 1 a 1
+          </div>
 
-          <div className="text-dark text-center">Marco teórico</div>
+          <div className="text-dark text-center whitespace-nowrap font-bold">
+            Marco teórico
+          </div>
 
-          <Link href="/ingresa" className="hidden md:block">
-            <div className="bg-secondary rounded flex flex-row gap-2 items-start justify-center relative px-3 py-1">
-              <div className="text-light text-center">Ingresa</div>
-            </div>
+          <Link href={"/registrate"} className="block">
+            <Button size="sm" variant="secondary">
+              Ingresa
+            </Button>
           </Link>
         </div>
         <div className="lg:hidden cursor-pointer" onClick={toggleMenu}>
@@ -59,9 +78,9 @@ const Navbar = () => {
 
           <div className="text-dark text-center">Marco teórico</div>
 
-          <div className="bg-secondary rounded flex flex-row gap-2 items-start justify-center relative px-3 py-1">
-            <div className="text-light text-center">Ingresa</div>
-          </div>
+          <Link href={"/registrate"}>
+            <Button variant="secondary">Ingresa</Button>
+          </Link>
         </div>
       </div>
     </div>

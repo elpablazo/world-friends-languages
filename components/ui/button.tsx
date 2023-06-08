@@ -19,7 +19,7 @@ const buttonVariants = cva(baseClasses, {
     },
     size: {
       default: "h-12 py-4 px-8",
-      sm: "h-8 py-2 px-4 text-sm",
+      sm: "h-8 py-2 px-4",
       lg: "h-16 py-6 px-12 text-lg",
     },
   },
