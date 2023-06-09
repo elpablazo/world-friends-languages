@@ -13,10 +13,12 @@ import Students from "./collections/Students";
 import Logo from "@/components/payload/Logo";
 import Icon from "@/components/payload/Icon";
 import CustomNav from "@/components/payload/CustomNav";
+import Coupons from "./collections/Coupons";
 
 // Plugins
 import seo from "@payloadcms/plugin-seo";
-import Coupons from "./collections/Coupons";
+import cloudinaryPlugin from "payload-cloudinary-plugin/dist/plugins";
+import { mediaManagement } from "payload-cloudinary-plugin";
 
 export default buildConfig({
   collections: [Cursos, Clases, Posts, Tags, Users, Ordenes, Students, Coupons],
@@ -27,6 +29,7 @@ export default buildConfig({
     seo({
       collections: ["posts"],
     }),
+    cloudinaryPlugin(),
   ],
   typescript: {
     outputFile: path.resolve(__dirname, "../payload-types.ts"),

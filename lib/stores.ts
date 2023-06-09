@@ -10,6 +10,8 @@ interface OrderStore {
   updatedAt: Date;
 
   setOrder: (order: OrderStore) => void;
+
+  previousState: OrderStore | null;
 }
 
 export const useOrderStore = create<OrderStore>()(
@@ -23,7 +25,20 @@ export const useOrderStore = create<OrderStore>()(
         createdAt: new Date(),
         updatedAt: new Date(),
 
-        setOrder: (order) => set(order),
+        previousState: null,
+
+        setOrder: (order) => {
+          // Guardamos una copia del estado actual
+          const previousState = get();
+
+          // Actualizamos el estado
+          set(order);
+
+          // Guardamos el estado anterior
+          set({ previousState });
+
+          // Hacemos update en server
+        },
       }),
       { name: "order-store" }
     )

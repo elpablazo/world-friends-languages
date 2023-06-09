@@ -10,6 +10,22 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { createUser } from "@/lib/axios";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+
+const formSchema = z.object({
+  nombre: z.string().nonempty({ message: "Ingresa tu nombre" }),
+  correo: z.string().email({ message: "Ingresa un correo válido" }),
+  telefono: z
+    .string()
+    .min(10, { message: "Ingresa un teléfono válido" })
+    .max(10, { message: "Ingresa un teléfono válido" }),
+  password: z
+    .string()
+    .min(8, { message: "Ingresa una contraseña de al menos 8 caracteres" }),
+});
 
 interface RegistroFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -17,14 +33,38 @@ export function RegistroForm({ className, ...props }: RegistroFormProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
-  async function onSubmit(event: React.SyntheticEvent) {
+  // TODO: ¿Cómo le meto esta madre???
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      nombre: "",
+      correo: "",
+      telefono: "",
+      password: "",
+    },
+  });
+
+  async function onSubmit(event: any) {
     event.preventDefault();
     setIsLoading(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
-      router.push("/registrate/como-usaras-la-plataforma");
-    }, 3000);
+    const nombre = event.target.nombre.value;
+    const correo = event.target.correo.value;
+    const telefono = event.target.telefono.value;
+    const password = event.target.password.value;
+
+    const data = {
+      nombre,
+      correo,
+      telefono,
+      password,
+    };
+
+    await createUser(data);
+
+    setIsLoading(false);
+
+    router.push("/registrate/como-usaras-la-plataforma");
   }
 
   return (
@@ -106,7 +146,7 @@ export function RegistroForm({ className, ...props }: RegistroFormProps) {
               Contraseña
             </Label>
             <Input
-              id="correo"
+              id="password"
               placeholder="Contraseña"
               type="password"
               autoCapitalize="none"
