@@ -72,7 +72,7 @@ const CardBeneficioCTA: React.FC<iCardBeneficioCTAprops> = ({
           className={`${hrClassName} p-4 flex flex-row gap-2 items-start justify-start relative border-t w-full`}
         >
           <div
-            className={`${textClassName} text-center relative flex-1 text-sm lg:text-base`}
+            className={`${textClassName} text-center relative flex-1 text-base`}
           >
             {cta.label}
           </div>
