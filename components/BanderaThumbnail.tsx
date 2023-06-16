@@ -1,18 +1,18 @@
 import Image from "next/image";
 
-interface Props {
+export interface iBandera {
   imagenUrl: string;
   pais: string;
 }
 
-const BanderaThumbnail: React.FC<Props> = ({ imagenUrl, pais }) => {
+const BanderaThumbnail: React.FC<iBandera> = ({ imagenUrl, pais }) => {
   const titulo = pais;
 
   return (
     <Image
       width={104}
       height={60}
-      className="rounded border-solid border-black/5 border"
+      className="rounded border-solid border-black/5 border pointer-events-none"
       src={imagenUrl}
       blurDataURL={imagenUrl}
       placeholder="blur"
