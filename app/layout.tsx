@@ -4,7 +4,12 @@ import "./globals.css";
 import { Ubuntu } from "next/font/google";
 import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  MotionConfig,
+  cubicBezier,
+  motion,
+} from "framer-motion";
 import { useRouter } from "next/navigation";
 
 const ubuntu = Ubuntu({
@@ -24,22 +29,29 @@ export default function RootLayout({
 }) {
   const router = useRouter();
   return (
-    <html lang="es-MX" className="bg-light text-dark antialiased">
-      <body className={`${ubuntu.className} overflow-x-clip max-w-screen`}>
-        <Navbar />
-        <AnimatePresence mode="sync">
-          <motion.div
-            key={router.asPath}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
-        <Footer />
-        <Toaster />
-      </body>
-    </html>
+    <MotionConfig
+      transition={{
+        ease: cubicBezier(0.124, 0.25, 0.63, 1),
+        duration: 0.75,
+      }}
+    >
+      <html lang="es-MX" className="bg-light text-dark antialiased">
+        <body className={`${ubuntu.className} overflow-x-clip max-w-screen`}>
+          <Navbar />
+          <AnimatePresence mode="sync">
+            <motion.div
+              key={router?.asPath}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              {children}
+            </motion.div>
+          </AnimatePresence>
+          <Footer />
+          <Toaster />
+        </body>
+      </html>
+    </MotionConfig>
   );
 }
