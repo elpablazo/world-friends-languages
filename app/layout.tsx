@@ -10,7 +10,7 @@ import {
   cubicBezier,
   motion,
 } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const ubuntu = Ubuntu({
   weight: ["400", "700"],
@@ -27,7 +27,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const router = useRouter();
+  const pathname = usePathname();
   return (
     <MotionConfig
       transition={{
@@ -38,9 +38,9 @@ export default function RootLayout({
       <html lang="es-MX" className="bg-light text-dark antialiased">
         <body className={`${ubuntu.className} overflow-x-clip max-w-screen`}>
           <Navbar />
-          <AnimatePresence mode="sync">
+          <AnimatePresence mode="popLayout">
             <motion.div
-              key={router?.asPath}
+              key={pathname}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
