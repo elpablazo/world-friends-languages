@@ -3,69 +3,22 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import Icon from "@/components/Icon";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Formik, Form } from "formik";
+import { Input } from "@/components/ui/formik/Input";
+import * as yup from "yup";
 import { createUser } from "@/lib/axios";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-
-const formSchema = z.object({
-  nombre: z.string().nonempty({ message: "Ingresa tu nombre" }),
-  correo: z.string().email({ message: "Ingresa un correo válido" }),
-  telefono: z
-    .string()
-    .min(10, { message: "Ingresa un teléfono válido" })
-    .max(10, { message: "Ingresa un teléfono válido" }),
-  password: z
-    .string()
-    .min(8, { message: "Ingresa una contraseña de al menos 8 caracteres" }),
-});
+import { toast } from "@/components/ui/use-toast";
 
 interface RegistroFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function RegistroForm({ className, ...props }: RegistroFormProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-
-  // TODO: ¿Cómo le meto esta madre???
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      nombre: "",
-      correo: "",
-      telefono: "",
-      password: "",
-    },
-  });
-
-  async function onSubmit(event: any) {
-    event.preventDefault();
-    setIsLoading(true);
-
-    const nombre = event.target.nombre.value;
-    const correo = event.target.correo.value;
-    const telefono = event.target.telefono.value;
-    const password = event.target.password.value;
-
-    const data = {
-      nombre,
-      correo,
-      telefono,
-      password,
-    };
-
-    await createUser(data);
-
-    setIsLoading(false);
-
-    router.push("/registrate/como-usaras-la-plataforma");
-  }
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
@@ -95,71 +48,53 @@ export function RegistroForm({ className, ...props }: RegistroFormProps) {
         <Separator className="w-full shrink" />
       </div>
 
-      <form onSubmit={onSubmit}>
-        <div className="grid gap-6">
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Nombre
-            </Label>
-            <Input
-              id="nombre"
-              placeholder="Nombre"
-              type="text"
-              autoCapitalize="none"
-              autoComplete="name"
-              autoCorrect="off"
-              disabled={isLoading}
-            />
-          </div>
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Correo electrónico
-            </Label>
-            <Input
-              id="correo"
-              placeholder="Correo electrónico"
-              type="email"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              disabled={isLoading}
-            />
-          </div>
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Teléfono celular
-            </Label>
-            <Input
-              id="telefono"
-              placeholder="Teléfono celular"
-              type="text"
-              maxLength={10}
-              minLength={10}
-              autoCapitalize="none"
-              autoComplete="phone"
-              autoCorrect="off"
-              disabled={isLoading}
-            />
-          </div>
-          <div className="grid gap-1">
-            <Label className="sr-only" htmlFor="email">
-              Contraseña
-            </Label>
-            <Input
-              id="password"
-              placeholder="Contraseña"
-              type="password"
-              autoCapitalize="none"
-              autoComplete="email"
-              autoCorrect="off"
-              disabled={isLoading}
-            />
-          </div>
-          <Button disabled={isLoading}>
-            {isLoading ? <Icon variant={"reloj"} /> : "Crear cuenta"}
-          </Button>
-        </div>
-      </form>
+      <Formik
+        initialValues={{
+          nombre: "",
+          email: "",
+          telefono: "",
+          password: "",
+        }}
+        validationSchema={yup.object({
+          nombre: yup.string().required("Llena este campo"),
+          email: yup
+            .string()
+            .required("Llena este campo")
+            .email("Ingresa un correo válido"),
+          telefono: yup
+            .string()
+            .required("Llena este campo")
+            .min(10, "Ingresa un teléfono válido")
+            .max(10, "Ingresa un teléfono válido"),
+          password: yup
+            .string()
+            .required("Llena este campo")
+            .min(8, "Ingresa una contraseña de al menos 8 caracteres"),
+        })}
+        onSubmit={async (values, { setSubmitting }) => {
+          try {
+            await createUser(values);
+          } catch (error: any) {
+            console.log(error);
+          }
+
+          setSubmitting(false);
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <div className="grid gap-6">
+              <Input label="Nombre" name="nombre" />
+              <Input label="Correo" name="email" type="mail" />
+              <Input label="Teléfono" name="telefono" type="tel" />
+              <Input label="Contraseña" name="password" type="password" />
+              <Button disabled={isSubmitting}>
+                {isSubmitting ? <Icon variant={"reloj"} /> : "Crear cuenta"}
+              </Button>
+            </div>
+          </Form>
+        )}
+      </Formik>
 
       <div className="flex">
         <Link className="link block mx-auto text-center" href="/ingresa">
