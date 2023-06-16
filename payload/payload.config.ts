@@ -14,12 +14,23 @@ import Logo from "@/components/payload/Logo";
 import Icon from "@/components/payload/Icon";
 import CustomNav from "@/components/payload/CustomNav";
 import Coupons from "./collections/Coupons";
+import { Media } from "./collections/Media";
 
 // Plugins
 import seo from "@payloadcms/plugin-seo";
 
 export default buildConfig({
-  collections: [Cursos, Clases, Posts, Tags, Users, Ordenes, Students, Coupons],
+  collections: [
+    Cursos,
+    Clases,
+    Posts,
+    Tags,
+    Users,
+    Ordenes,
+    Students,
+    Coupons,
+    Media,
+  ],
   globals: [
     // Your globals here
   ],

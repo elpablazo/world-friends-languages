@@ -23,6 +23,12 @@ const Cursos: CollectionConfig = {
           description: "Información general del curso.",
           fields: [
             {
+              name: "cover",
+              label: "Portada",
+              type: "upload",
+              relationTo: "media",
+            },
+            {
               name: "name",
               type: "text",
               label: "Nombre del curso",
