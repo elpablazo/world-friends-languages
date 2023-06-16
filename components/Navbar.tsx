@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
+import SearchBar from "./SearchBar";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,21 +41,7 @@ const Navbar = () => {
         <Logo />
 
         <div className="hidden lg:flex flex-row gap-12 items-center relative w-full">
-          <div className="grid gap-1 grow">
-            <Label className="sr-only" htmlFor="search">
-              Buscar
-            </Label>
-            <Input
-              id="search"
-              placeholder="Buscar"
-              type="text"
-              autoCapitalize="none"
-              autoComplete="off"
-              autoCorrect="off"
-              disabled={false}
-              className="w-full"
-            />
-          </div>
+          <SearchBar />
 
           {links.map((link) => (
             <Link
