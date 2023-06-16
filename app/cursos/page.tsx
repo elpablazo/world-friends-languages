@@ -9,7 +9,7 @@ const bannerSrc = "/images/demo/bannerCursos.jpg";
 
 const Page = (): JSX.Element => {
   return (
-    <div className="relative min-h-screen space-y-6">
+    <div className="relative min-h-screen space-y-12">
       <Image
         src={bannerSrc}
         alt="Banner de los cursos | World Friend Languages"
@@ -20,8 +20,8 @@ const Page = (): JSX.Element => {
       />
       <div className="relative !-mt-[10vh]">
         <div className="container mx-auto px-4 max-w-md">
-          <div className="card flex flex-col gap-4 bg-white rounded p-4">
-            <h1 className="text-2xl lg:text-3xl font-bold text-center">
+          <div className="card flex flex-col gap-4 bg-white rounded p-4 border-gray-light border-2">
+            <h1 className="text-2xl font-bold text-center">
               Cursos de idiomas
             </h1>
             <div className="flex gap-4 flex-col lg:flex-row">
@@ -61,7 +61,7 @@ const Page = (): JSX.Element => {
         ]}
       />
       <div className="container">
-        <div className="grid gap-6">
+        <div className="grid sm:grid-cols-2 gap-6">
           {[
             {
               titulo: "Inglés para certificado TOEFL",
