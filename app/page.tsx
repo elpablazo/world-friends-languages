@@ -1,7 +1,9 @@
 import CardBeneficioCTA from "@/components/CardBeneficioCTA";
 import CardCursoLP from "@/components/CardCursoLP";
+import GridAnunciosLP from "@/components/GridAnunciosLP";
 import ReviewsSection from "@/components/ReviewsSection";
 import Logo from "@/components/payload/Logo";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 export interface ILandingPageProps {}
 
@@ -102,116 +104,11 @@ const LandingPage = ({ ...props }: ILandingPageProps): JSX.Element => {
             );
           })}
 
-          <div className="rounded py-4 px-6 flex flex-row gap-2 items-start justify-center relative bg-primary w-full lg:w-auto lg:min-w-[320px]">
-            <p className="text-light text-center font-bold text-lg">Ver más</p>
-          </div>
+          <Button className="mx-auto">Ver más</Button>
         </div>
       </div>
       <div className="container">
-        <div className="pt-8 pr-[76px] pb-0 pl-[76px] flex flex-row gap-12 items-center justify-start self-stretch relative">
-          <div className="flex flex-col gap-12 items-start justify-start flex-1 relative">
-            <div className="bg-gradient-to-tr from-secondary/20 to-secondary/0 rounded relative flex gap-2 justify-between overflow-hidden">
-              <div className="flex flex-col gap-6 items-start justify-between w-full p-6">
-                <div className="flex flex-col gap-2 relative w-full">
-                  <div className="font-bold text-2xl">
-                    ¿Eres profesor de idiomas?
-                  </div>
-
-                  <div className="text-lg">
-                    Si estás buscando llegar a más estudiantes en línea, ¡súmate
-                    a nuestra equipo, es gratis!
-                  </div>
-                </div>
-
-                <div
-                  className="rounded-[8px_8px_8px_0px] pt-4 pr-6 pb-4 pl-6 flex flex-row gap-2 items-start justify-center relative"
-                  style={{
-                    background:
-                      "var(--gradient, linear-gradient(87.28deg, rgba(0, 160, 170, 1.00) 0%,rgba(0, 170, 160, 1.00) 100%))",
-                  }}
-                >
-                  <div
-                    className="text-light text-center relative"
-                    style={{
-                      font: "var(--botones, 700 20px 'Ubuntu', sans-serif)",
-                    }}
-                  >
-                    Regístrate
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-row gap-6 items-center justify-start relative aspect-cover">
-                <Image
-                  src="/images/demo/profesor.png"
-                  alt="Profesor | World Friends Languages"
-                  width={263}
-                  height={260}
-                  className="min-w-full min-h-full object-cover aspect-auto"
-                />
-              </div>
-            </div>
-
-            <div className="bg-light rounded border-2 border-gray-light flex flex-row gap-6 items-center relative overflow-hidden w-full">
-              <div className="p-6 flex flex-col gap-6 relative">
-                <div className="flex flex-col gap-2 items-start justify-start max-w-md">
-                  <p className="font-bold text-2xl">¡Contáctanos!</p>
-
-                  <p className="text-lg relative w-full">
-                    Si deseas recibir más informes acerca de algún curso o clase
-                    particular, llámanos al:
-                  </p>
-                </div>
-                <a
-                  href="tel:5568004685"
-                  className="text-2xl block text-primary font-bold hover:underline"
-                >
-                  55 6800 4685
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="rounded-[32px_32px_32px_0px] flex flex-col gap-6 items-start justify-center self-stretch w-[329px] relative overflow-hidden"
-            style={{
-              background:
-                "var(--gradient, linear-gradient(87.28deg, rgba(0, 160, 170, 1.00) 0%,rgba(0, 170, 160, 1.00) 100%))",
-            }}
-          >
-            <div className="p-6 flex flex-col gap-6 items-start justify-start self-stretch relative">
-              <div className="flex flex-col gap-4 items-center justify-start self-stretch relative">
-                <div className="font-bold text-2xl text-light text-left relative self-stretch">
-                  Clases en vivo
-                </div>
-
-                <div className="text-light text-left relative self-stretch">
-                  Toma clases desde tu computadora o celular en una videollamada
-                  con un profesor para resolver todas tus dudas.
-                </div>
-              </div>
-
-              <div className="bg-secondary rounded-[8px_8px_8px_0px] pt-4 pr-6 pb-4 pl-6 flex flex-row gap-2 items-start justify-center self-stretch relative">
-                <div
-                  className="text-light text-center relative"
-                  style={{
-                    font: "var(--botones, 700 20px 'Ubuntu', sans-serif)",
-                  }}
-                >
-                  Empieza gratis
-                </div>
-              </div>
-            </div>
-
-            <Image
-              className="self-stretch flex-1 relative"
-              src="/images/demo/videollamadaConProfesora.jpg"
-              alt="pexels-photo-by-g-l-i-k"
-              width={329}
-              height={329}
-            />
-          </div>
-        </div>
+        <GridAnunciosLP />
       </div>
     </div>
   );
