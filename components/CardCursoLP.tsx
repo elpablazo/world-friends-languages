@@ -1,4 +1,5 @@
 import Image from "next/image";
+import BanderaThumbnail from "./BanderaThumbnail";
 
 export interface ICardCursoLPProps {
   titulo: string;
@@ -14,13 +15,7 @@ const CardCursoLP = ({ titulo, children, imagenUrl }: ICardCursoLPProps) => {
 
         <div className="text-dark text-left">{children}</div>
       </div>
-      <Image
-        width={104}
-        height={60}
-        className="rounded border-solid border-black/5 border"
-        src={imagenUrl}
-        alt={`Imagen de ${titulo} | World Friends Languages`}
-      />
+      <BanderaThumbnail imagenUrl={imagenUrl} pais={titulo} />
     </div>
   );
 };
