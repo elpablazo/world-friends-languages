@@ -1,17 +1,20 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
+import payloadApi from "./axios";
 
+// Todo: Completar typescript
 interface OrderStore {
   id: string | null;
+  items: any[];
   paid: boolean;
   total: number;
   subtotal: number;
   createdAt: Date;
   updatedAt: Date;
+  previousState: OrderStore | null;
 
   setOrder: (order: OrderStore) => void;
-
-  previousState: OrderStore | null;
+  addToCart: (item: any) => void;
 }
 
 export const useOrderStore = create<OrderStore>()(
@@ -19,6 +22,7 @@ export const useOrderStore = create<OrderStore>()(
     persist(
       (set, get) => ({
         id: null,
+        items: [],
         paid: false,
         total: 0,
         subtotal: 0,
@@ -41,6 +45,24 @@ export const useOrderStore = create<OrderStore>()(
           console.log("Current state", get());
 
           // Hacemos update en server
+        },
+
+        addToCart: async (item) => {
+          // Obtenemos el id de la orden
+          const id = get().id;
+          // Acomodamos los items de forma {curso: id}
+          const items = [
+            ...get()?.items?.map((item) => item.id || ""),
+            item.id,
+          ];
+
+          // Actualizamos en servidor
+          const newOrder = await payloadApi.patch(`/ordenes/${id}`, {
+            items,
+          });
+
+          // Actualizamos el estado
+          get().setOrder(newOrder.data.doc);
         },
       }),
       { name: "order-store" }
