@@ -94,7 +94,7 @@ export default async function Page({
         {/* COURSE TAGS */}
         <div className="flex gap-2">
           {curso.tags.map((tag: any) => (
-            <div className="rounded-full px-4 py-2 bg-primary/10">
+            <div className="rounded-full px-4 py-2 bg-primary/10" key={tag.id}>
               <p className="text-primary">{tag.title}</p>
             </div>
           ))}
