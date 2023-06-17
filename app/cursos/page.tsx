@@ -7,6 +7,7 @@ import SearchBar from "@/components/SearchBar";
 import { Button } from "@/components/ui/button";
 import payloadApi from "@/lib/axios";
 import Link from "next/link";
+import { DateTime } from "luxon";
 const bannerSrc = "/images/demo/bannerCursos.jpg";
 
 async function getStaticProps() {
@@ -15,8 +16,6 @@ async function getStaticProps() {
   if (res.status !== 200) {
     throw new Error(res.statusText);
   }
-
-  console.log("Cursos data --------------------->", res.data);
 
   return res.data;
 }
@@ -80,6 +79,39 @@ const Page = async () => {
       <div className="container">
         <div className="grid sm:grid-cols-2 gap-6">
           {cursos?.docs?.map((curso: any) => {
+            const fechaInicio = DateTime.fromISO(curso.startDate);
+            const fechaFin = DateTime.fromISO(curso.endDate);
+            // Obtenemos la diferencia en semanas
+            let diferenciaDeSemanas = fechaFin
+              .diff(fechaInicio, "weeks")
+              .weeks.toFixed(0);
+
+            console.log(
+              "La diferencia en semanas es de: ",
+              diferenciaDeSemanas,
+              "semanas"
+            );
+
+            let duracion = diferenciaDeSemanas;
+
+            // Esta variable nos dice si escribir "semanas", "días" o "meses"
+            let magnitudFecha =
+              Number(diferenciaDeSemanas) > 1 ? "semanas" : "semana";
+
+            // Si la diferencia es 0, entonces escribimos en días
+            if (Number(diferenciaDeSemanas) === 0) {
+              duracion = fechaFin.diff(fechaInicio, "days").days.toFixed(0);
+
+              magnitudFecha = "días";
+            }
+
+            // Si la diferencia es mayor a 12 semanas, entonces escribimos en meses
+            if (Number(diferenciaDeSemanas) > 12) {
+              duracion = fechaFin.diff(fechaInicio, "months").months.toFixed(0);
+
+              magnitudFecha = "meses";
+            }
+
             return (
               <Link href={`/cursos/${curso.id}`} key={curso.id}>
                 <CardCursoLP
@@ -98,7 +130,9 @@ const Page = async () => {
                       </div>
                       <div className="grid">
                         <span className="font-bold">Duración:</span>
-                        <span className="text-dark">6 meses</span>
+                        <span className="text-dark">
+                          {duracion} {magnitudFecha}
+                        </span>
                       </div>
                     </div>
                   </div>
