@@ -78,7 +78,7 @@ const Page = async () => {
       <GridBanderas banderas={banderas} />
       <div className="container">
         <div className="grid sm:grid-cols-2 gap-6">
-          {cursos?.docs?.map((curso: any) => {
+          {cursos?.docs?.map((curso: any, i: number) => {
             const fechaInicio = DateTime.fromISO(curso.startDate);
             const fechaFin = DateTime.fromISO(curso.endDate);
             // Obtenemos la diferencia en semanas
@@ -107,7 +107,7 @@ const Page = async () => {
             }
 
             return (
-              <Link href={`/cursos/${curso.id}`} key={curso.id}>
+              <Link href={`/cursos/${curso.id}`} key={i}>
                 <CardCursoLP
                   titulo={curso.name}
                   imagenUrl={
