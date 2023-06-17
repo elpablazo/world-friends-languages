@@ -14,6 +14,7 @@ const Cursos: CollectionConfig = {
     delete: isAdmin,
   },
   fields: [
+    // Tabs
     {
       type: "tabs",
       tabs: [
@@ -227,6 +228,46 @@ const Cursos: CollectionConfig = {
         description:
           "Elige el idioma del curso y dos etiquetas más. (Ej. nivel, tipo de curso, etc.)",
       },
+    },
+    {
+      name: "flag",
+      type: "select",
+      label: "Bandera",
+      admin: {
+        position: "sidebar",
+        description:
+          "Elige la bandera deel país con el que se asociará el curso. Esto no afecta los resultados de búsqueda, y es únicamnete informativo.",
+      },
+      options: [
+        {
+          label: "México",
+          value: "México",
+        },
+        {
+          label: "Francia",
+          value: "Francia",
+        },
+        {
+          label: "Alemania",
+          value: "Alemania",
+        },
+        {
+          label: "Reino Unido",
+          value: "Reino Unido",
+        },
+        {
+          label: "Estados Unidos",
+          value: "Estados Unidos",
+        },
+        {
+          label: "Italia",
+          value: "Italia",
+        },
+        {
+          label: "Portugal",
+          value: "Portugal",
+        },
+      ],
     },
     {
       name: "profesor",
