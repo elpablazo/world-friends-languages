@@ -70,7 +70,7 @@ export default function RootLayout({
               {children}
             </motion.div>
           </AnimatePresence>
-          <Footer />
+          {!pathname?.includes("/admin") && <Footer />}
           {!pathname?.includes("/admin") && <Toaster />}
         </body>
       </html>
