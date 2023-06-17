@@ -1,8 +1,10 @@
 "use client";
 
+import { Button } from "@/components/ui/formik/Button";
 import { useOrderStore } from "@/lib/stores";
 import { DateTime } from "luxon";
 import Image from "next/image";
+import Link from "next/link";
 
 const exampleItems = [
   {
@@ -43,6 +45,9 @@ export default function Page() {
                 currency: "MXN",
               }).format(total)}
             </p>
+            <Link href={"/finalizar-compra"}>
+              <Button>Finalizar compra</Button>
+            </Link>
           </div>
         </div>
       ) : (
