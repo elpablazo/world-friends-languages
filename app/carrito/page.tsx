@@ -1,6 +1,7 @@
 "use client";
 
 import { useOrderStore } from "@/lib/stores";
+import { DateTime } from "luxon";
 import Image from "next/image";
 
 const exampleItems = [
@@ -35,7 +36,13 @@ export default function Page() {
             <CarritoItem key={product.id} product={product} />
           ))}
           <div className="text-right">
-            <p className="text-gray-600">Total: ${total}</p>
+            <p className="text-gray-600">
+              Total:{" "}
+              {new Intl.NumberFormat("es-MX", {
+                style: "currency",
+                currency: "MXN",
+              }).format(total)}
+            </p>
           </div>
         </div>
       ) : (
@@ -52,31 +59,43 @@ export interface CarritoItemProps {
     image: string;
     price: number;
     quantity: number;
+    startDate: string;
   };
 }
 
-const CarritoItem = ({ product }: CarritoItemProps) => (
-  <div className="flex items-center gap-4 w-full rounded p-4 border-2 border-gray-light justify-between">
-    <div className="flex flex-col gap-1">
-      <div className="text-sm flex items-center gap-2">
-        <p className="">{product.quantity}x</p>
-        <h3 className="text-lg">{product.name}</h3>
+const CarritoItem = ({ product }: CarritoItemProps) => {
+  const startDate = DateTime.fromISO(product.startDate).toLocaleString(
+    DateTime.DATE_FULL
+  );
+
+  return (
+    <div className="flex items-center gap-4 w-full rounded p-4 border-2 border-gray-light justify-between">
+      <div className="flex flex-col gap-1">
+        <div className="text-sm flex items-center gap-2">
+          <p className="">{1}x</p>
+          <h3 className="text-lg">{product.name}</h3>
+        </div>
+        <div className="text-sm flex flex-col gap-0">
+          <p className="text-primary">Comienza</p>
+          <p>{startDate}</p>
+        </div>
+        <div className="text-primary flex items-center gap-1 text-xl">
+          <p className="font-bold">
+            {new Intl.NumberFormat("es-MX", {
+              style: "currency",
+              currency: "MXN",
+            }).format(product.price)}
+          </p>
+          <span className="block text-sm">MXN</span>
+        </div>
       </div>
-      <div className="text-sm flex flex-col gap-0">
-        <p className="text-primary">Comienza</p>
-        <p>1 de mayo de 2023</p>
-      </div>
-      <div className="text-primary flex items-center gap-1 text-xl">
-        <p className="font-bold">${product.price * product.quantity}</p>
-        <span className="block text-sm">MXN</span>
-      </div>
+      <Image
+        src="/images/demo/cursocover.jpg"
+        width={2121}
+        height={1414}
+        alt={`${product.name} | World Friends Languages`}
+        className="w-auto aspect-video h-24 object-cover rounded"
+      />
     </div>
-    <Image
-      src={product.image}
-      width={2121}
-      height={1414}
-      alt={`${product.name} | World Friends Languages`}
-      className="w-auto aspect-video h-24 object-cover rounded"
-    />
-  </div>
-);
+  );
+};

@@ -2,9 +2,9 @@
 
 import payloadApi from "@/lib/axios";
 import { DateTime } from "luxon";
-import { Button } from "@/components/ui/button";
 import { slateToHtml } from "slate-serializers";
 import Icon from "@/components/Icon";
+import AddToCartButton from "../addToCartButton";
 
 // Obtenemos la información de un curso
 async function getCurso(id: string) {
@@ -138,13 +138,7 @@ export default async function Page({
           </div>
           {/* BOTÓN DE AÑADIR AL CARRITO */}
           <div className="flex w-full justify-center items-center text-center mx-auto items-stretch">
-            <Button
-              variant={"secondary"}
-              size={"lg"}
-              className="mx-auto w-full"
-            >
-              Agregar al carrito
-            </Button>
+            <AddToCartButton curso={curso} />
           </div>
         </div>
 

@@ -14,7 +14,7 @@ interface OrderStore {
   previousState: OrderStore | null;
 
   setOrder: (order: OrderStore) => void;
-  addToCart: (item: any) => void;
+  addToCart: (item: any) => any;
 }
 
 export const useOrderStore = create<OrderStore>()(
@@ -63,6 +63,8 @@ export const useOrderStore = create<OrderStore>()(
 
           // Actualizamos el estado
           get().setOrder(newOrder.data.doc);
+
+          return newOrder.data.doc;
         },
       }),
       { name: "order-store" }
