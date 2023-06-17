@@ -55,7 +55,7 @@ export default function RootLayout({
     >
       <html lang="es-MX" className="bg-light text-dark antialiased">
         <body className={`${ubuntu.className} overflow-x-clip max-w-screen`}>
-          <Navbar />
+          {!pathname?.includes("/admin") && <Navbar />}
           <AnimatePresence mode="wait">
             <motion.div
               className="opacity-0"
