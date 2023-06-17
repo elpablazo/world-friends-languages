@@ -71,7 +71,7 @@ export default function RootLayout({
             </motion.div>
           </AnimatePresence>
           <Footer />
-          <Toaster />
+          {!pathname?.includes("/admin") && <Toaster />}
         </body>
       </html>
     </MotionConfig>
