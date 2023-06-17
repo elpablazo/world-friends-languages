@@ -36,10 +36,9 @@ const Cursos: CollectionConfig = {
               required: true,
             },
             {
-              name: "description",
+              name: "descripcion",
               label: "Descripción",
-              type: "richText",
-              required: true,
+              type: "textarea",
             },
             {
               name: "modalidad",
