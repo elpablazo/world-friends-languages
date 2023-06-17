@@ -37,6 +37,9 @@ export const useOrderStore = create<OrderStore>()(
           // Guardamos el estado anterior
           set({ previousState });
 
+          console.log("Previous state", previousState);
+          console.log("Current state", get());
+
           // Hacemos update en server
         },
       }),

@@ -6,6 +6,9 @@ import Footer from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
 import { AnimatePresence, MotionConfig, circOut, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { useOrderStore } from "@/lib/stores";
+import { useEffect } from "react";
+import payloadApi from "@/lib/axios";
 
 const ubuntu = Ubuntu({
   weight: ["400", "700"],
@@ -23,6 +26,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+
+  const store = useOrderStore();
+
+  // Si no existe una orden, entonces creamos una
+  useEffect(() => {
+    if (!store.id) {
+      createOrder().then((order) => {
+        console.log("order", order);
+
+        store.setOrder(order);
+      });
+    }
+
+    async function createOrder() {
+      const order = await payloadApi.post("/ordenes", {});
+
+      return order.data.doc;
+    }
+  }, []);
 
   return (
     <MotionConfig
