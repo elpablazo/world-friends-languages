@@ -4,6 +4,7 @@ import payloadApi from "@/lib/axios";
 import { DateTime } from "luxon";
 import { Button } from "@/components/ui/button";
 import { slateToHtml } from "slate-serializers";
+import Icon from "@/components/Icon";
 
 // Obtenemos la información de un curso
 async function getCurso(id: string) {
@@ -12,8 +13,6 @@ async function getCurso(id: string) {
   if (curso.status !== 200) {
     throw new Error(curso.statusText);
   }
-
-  console.log(curso.data);
 
   return curso.data;
 }
@@ -41,12 +40,6 @@ export default async function Page({
   let diferenciaDeSemanas = fechaFin
     .diff(fechaInicio, "weeks")
     .weeks.toFixed(0);
-
-  console.log(
-    "La diferencia en semanas es de: ",
-    diferenciaDeSemanas,
-    "semanas"
-  );
 
   let duracion = diferenciaDeSemanas;
 
@@ -116,36 +109,43 @@ export default async function Page({
           </div>
 
           {/* DURACIÓN */}
-          <div className="flex flex-col gap-2">
-            <p className="font-bold text-primary">Duración:</p>
-            <p>
-              {duracion} {magnitudFecha}
-            </p>
-          </div>
-
-          {/* DOS COLUMNAS HORIZONTALES: UNA CON EL PRECIO Y OTRA CON UN BOTÓN QUE DIGA "AÑADIR AL CARRITO" */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* PRECIO */}
-            <div className="flex gap-2">
-              <p className="text-xl">
-                <span className="text-secondary font-bold">
-                  {new Intl.NumberFormat("es-MX", {
-                    style: "currency",
-                    currency: "MXN",
-                  }).format(curso.price)}
-                </span>
-                {/* // MXN DEBE ESTAR MÁS CHIQUITO Y ARRIBA DEL PRECIO */}
-                <span className="text-sm align-top">MXN</span>
-              </p>
+          <div className="flex flex-row gap-2 text-primary text-base">
+            <div className="mt-1">
+              <Icon variant="reloj" />
+            </div>
+            <div className="grid">
+              <span className="font-bold">Duración:</span>
+              <span className="text-dark">
+                {duracion} {magnitudFecha}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* BOTÓN DE AÑADIR AL CARRITO */}
-        <div className="flex w-full justify-center items-center text-center mx-auto items-stretch">
-          <Button variant={"secondary"} size={"lg"} className="mx-auto w-full">
-            Agregar al carrito
-          </Button>
+        <div className="flex gap-12">
+          {/* PRECIO */}
+          <div className="flex gap-2">
+            <p className="text-xl">
+              <span className="text-secondary font-bold">
+                {new Intl.NumberFormat("es-MX", {
+                  style: "currency",
+                  currency: "MXN",
+                }).format(curso.price)}
+              </span>
+              {/* // MXN DEBE ESTAR MÁS CHIQUITO Y ARRIBA DEL PRECIO */}
+              <span className="text-sm align-top">MXN</span>
+            </p>
+          </div>
+          {/* BOTÓN DE AÑADIR AL CARRITO */}
+          <div className="flex w-full justify-center items-center text-center mx-auto items-stretch">
+            <Button
+              variant={"secondary"}
+              size={"lg"}
+              className="mx-auto w-full"
+            >
+              Agregar al carrito
+            </Button>
+          </div>
         </div>
 
         {/* Objetivos: */}

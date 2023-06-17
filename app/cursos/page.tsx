@@ -86,12 +86,6 @@ const Page = async () => {
               .diff(fechaInicio, "weeks")
               .weeks.toFixed(0);
 
-            console.log(
-              "La diferencia en semanas es de: ",
-              diferenciaDeSemanas,
-              "semanas"
-            );
-
             let duracion = diferenciaDeSemanas;
 
             // Esta variable nos dice si escribir "semanas", "días" o "meses"
