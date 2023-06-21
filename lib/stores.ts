@@ -41,15 +41,16 @@ export const useOrderStore = create<OrderStore>()(
           // Guardamos el estado anterior
           set({ previousState });
 
-          console.log("Previous state", previousState);
-          console.log("Current state", get());
-
           // Hacemos update en server
         },
 
         addToCart: async (item) => {
           // Obtenemos el id de la orden
           const id = get().id;
+
+          // Si el item ya está en el carrito, no hacemos nada
+          if (get()?.items?.find((i) => i.id === item.id)) return;
+
           // Acomodamos los items de forma {curso: id}
           const items = [
             ...get()?.items?.map((item) => item.id || ""),
