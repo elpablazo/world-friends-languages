@@ -6,7 +6,7 @@ interface PayloadResponse {
 }
 
 const payloadApi = axios.create({
-  baseURL: `${process.env.URL}/api`,
+  baseURL: `${process.env.NEXT_PUBLIC_URL}/api`,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
