@@ -70,6 +70,7 @@ const CardBeneficioCTA: React.FC<iCardBeneficioCTAprops> = ({
         <Link
           href={cta.href}
           className={`${hrClassName} p-4 flex flex-row gap-2 items-start justify-start relative border-t w-full`}
+          prefetch={false}
         >
           <div
             className={`${textClassName} text-center relative flex-1 text-base`}

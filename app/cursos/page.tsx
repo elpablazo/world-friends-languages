@@ -107,7 +107,7 @@ const Page = async () => {
             }
 
             return (
-              <Link href={`/cursos/${curso.id}`} key={i}>
+              <Link href={`/cursos/${curso.id}`} key={i} prefetch={false}>
                 <CardCursoLP
                   titulo={curso.name}
                   imagenUrl={
