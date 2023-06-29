@@ -2,6 +2,7 @@ import { CollectionConfig } from "payload/types";
 import payload from "payload";
 import { isAdmin } from "../access/isAdmin";
 
+// De este comentario pende todo el código
 const Coupons: CollectionConfig = {
   slug: "coupons",
   access: {
