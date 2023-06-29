@@ -55,7 +55,8 @@ export default function RootLayout({
     >
       <html lang="es-MX" className="bg-light text-dark antialiased">
         <body className={`${ubuntu.className} overflow-x-clip max-w-screen`}>
-          {!pathname?.includes("/admin") && <Navbar />}
+          {!pathname?.includes("/admin") ||
+            (!pathname?.includes("/dashboard") && <Navbar />)}
           <AnimatePresence mode="wait">
             <motion.div
               className="opacity-0"
@@ -70,8 +71,9 @@ export default function RootLayout({
               {children}
             </motion.div>
           </AnimatePresence>
-          {!pathname?.includes("/admin") && <Footer />}
-          {!pathname?.includes("/admin") && <Toaster />}
+          {!pathname?.includes("/admin") ||
+            (!pathname?.includes("/dashboard") && <Footer />)}
+          <Toaster />
         </body>
       </html>
     </MotionConfig>
