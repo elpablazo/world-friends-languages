@@ -6,7 +6,7 @@ interface PayloadResponse {
 }
 
 const payloadApi = axios.create({
-  baseURL: `https://worldfriendslanguages.app.obeskay.com/api`,
+  baseURL: `${process.env.NEXT_PUBLIC_URL}/api`,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
