@@ -35,33 +35,40 @@ export default async function Page({
     DateTime.DATE_FULL
   );
 
-  const content = slateToHtml(JSON.parse(post.content as any));
+  const content = slateToHtml(post?.content);
 
   return (
     // Two columns: left one with the course image, right one with the course info
-    <div className="container font-normal">
+    <div className="container py-12 font-normal mx-auto max-w-2xl">
       <div className="flex flex-col gap-4">
         {/* POST TITLE */}
-        <h1 className="text-4xl font-bold">{post.title}</h1>
+        <h1 className="text-4xl font-bold text-primary">{post.title}</h1>
 
-        {/* POST TAGS */}
-        <div className="flex gap-2">
-          {post?.tags?.map((tag, i: number) => (
-            <div className="rounded-full px-4 py-2 bg-primary/10" key={i}>
-              <p className="text-primary">
-                {typeof tag === "string" ? tag : tag?.title}
-              </p>
-            </div>
-          ))}
-        </div>
+        <div className="flex justify-between">
+          {/* POST TAGS */}
+          <div className="flex gap-2">
+            {post?.tags?.map((tag, i: number) => (
+              <div className="rounded-full px-4 py-2 bg-primary/10" key={i}>
+                <p className="text-primary">
+                  {typeof tag === "string" ? tag : tag?.title}
+                </p>
+              </div>
+            ))}
+          </div>
 
-        {/*  POST PUBLISH DATE */}
-        <div className="flex flex-col">
-          <p>{publishDate}</p>
+          {/*  POST PUBLISH DATE */}
+          <div className="flex flex-col">
+            <p>{publishDate}</p>
+          </div>
         </div>
 
         {/* POST CONTENT */}
-        <div className="prose space-y-4">{content}</div>
+        <div
+          className="prose space-y-4"
+          dangerouslySetInnerHTML={{
+            __html: content,
+          }}
+        />
       </div>
     </div>
   );
