@@ -20,6 +20,7 @@ const Navbar = () => {
     { href: "/cursos", label: "Ver cursos" },
     { href: "/clases", label: "Clases 1 a 1" },
     { href: "/marco-teorico", label: "Marco teórico" },
+    { href: "/blog", label: "Blog" },
   ];
 
   const menuVariants = {
