@@ -1,13 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import React from "react";
 import { useConfig, useAuth } from "payload/components/utilities";
 import Logo from "./Icon";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import MenuContainer from "../MenuContainer";
-import { motion } from "framer-motion";
-import Icon from "../Icon";
 import { Menu } from "../Menu";
 const menuItems = [
   {
