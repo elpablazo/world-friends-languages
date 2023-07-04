@@ -51,14 +51,15 @@ export default async function Page({}) {
         <h3 className="text-2xl font-bold text-center">Post recientes:</h3>
         <div className="grid sm:grid-cols-2 gap-6">
           {posts.docs?.map((post, i: number) => (
-            <div
+            <Link
+              href={`/blog/${post.id}`}
               key={i}
-              className="rounded border-solid border-gray-light border-2 py-6 px-4 flex flex-row gap-6 items-center justify-between w-full relative"
+              className="rounded border-solid border-gray-light border-2 py-6 px-4 flex flex-row gap-6 justify-between w-full relative group hover:border-primary"
             >
-              <Link href={`/blog/${post.id}`} className="text-primary">
+              <span className="text-lg group-hover:text-primary">
                 {post.title}
-              </Link>
-            </div>
+              </span>
+            </Link>
           ))}
         </div>
       </div>
