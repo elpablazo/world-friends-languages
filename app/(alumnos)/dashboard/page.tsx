@@ -9,11 +9,11 @@ const page = () => {
         <h1 className="font-bold text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl">
           Hola, {nombre_user}.
         </h1>
-        <Card>
+        {/* <Card>
           <CardHeader>
             <CardTitle>Card Title</CardTitle>
           </CardHeader>
-        </Card>
+        </Card> */}
       </div>
     </MenuContainer>
   );
