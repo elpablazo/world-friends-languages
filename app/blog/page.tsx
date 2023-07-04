@@ -56,7 +56,7 @@ export default async function Page({}) {
               className="rounded border-solid border-gray-light border-2 py-6 px-4 flex flex-row gap-6 items-center justify-between w-full relative"
             >
               <Link href={`/blog/${post.id}`} className="text-primary">
-                {post.title} - {post.id}
+                {post.title}
               </Link>
             </div>
           ))}
