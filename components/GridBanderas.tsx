@@ -7,7 +7,8 @@ type Props = {
   banderas: iBandera[];
 };
 
-const GridBanderas = ({ banderas }: Props) => {
+const GridBanderas = memo(({ banderas }: Props) => {
+  const repeatedBanderas = [...banderas, ...banderas];
   return (
     <div className="flex gap-4 items-center overflow-x-auto w-max">
       {Array(3)
@@ -24,7 +25,7 @@ const GridBanderas = ({ banderas }: Props) => {
                 ease: "linear",
               }}
             >
-              {[...banderas, ...banderas].map((bandera, j) => (
+              {repeatedBanderas.map((bandera, j) => (
                 <div key={j} className="select-none">
                   <BanderaThumbnail {...bandera} />
                 </div>
@@ -35,8 +36,8 @@ const GridBanderas = ({ banderas }: Props) => {
         })}
     </div>
   );
-};
+});
 
 GridBanderas.displayName = "GridBanderas";
 
-export default memo(GridBanderas);
+export default GridBanderas;
