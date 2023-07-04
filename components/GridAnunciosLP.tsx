@@ -1,5 +1,6 @@
 import Image from "next/image";
 import AnuncioProfesores from "./AnuncioProfesores";
+import { Button } from "./ui/button";
 
 const GridAnunciosLP = () => {
   return (
@@ -49,16 +50,9 @@ const GridAnunciosLP = () => {
             </div>
           </div>
 
-          <div className="bg-secondary rounded-[8px_8px_8px_0px] pt-4 pr-6 pb-4 pl-6 flex flex-row gap-2 items-start justify-center self-stretch relative">
-            <div
-              className="text-light text-center relative"
-              style={{
-                font: "var(--botones, 700 20px 'Ubuntu', sans-serif)",
-              }}
-            >
-              Empieza gratis
-            </div>
-          </div>
+          <Button variant="secondary" className="w-full">
+            Empieza gratis
+          </Button>
         </div>
 
         <Image
