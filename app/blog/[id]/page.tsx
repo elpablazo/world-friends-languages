@@ -8,6 +8,7 @@ import { Post, Tag } from "@/payload-types";
 
 // Obtenemos la información de un post
 const getPost = async (id: string) => {
+  console.log("obtendremos data del id", id);
   const post = await payloadApi.get(`/posts/${id}`);
 
   if (post.status !== 200) {
