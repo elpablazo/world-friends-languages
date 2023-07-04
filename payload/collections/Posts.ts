@@ -1,9 +1,13 @@
 import { CollectionConfig } from "payload/types";
+import { isAdmin } from "../access/isAdmin";
 
 const Blogs: CollectionConfig = {
   slug: "posts",
   access: {
     read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   admin: {
     useAsTitle: "title",
@@ -42,7 +46,6 @@ const Blogs: CollectionConfig = {
       label: "Fecha de publicación",
       admin: {
         position: "sidebar",
-        description: "Los posts no serán públicos hasta la fecha indicada.",
       },
       defaultValue: () => new Date(),
     },

@@ -34,11 +34,7 @@ export default buildConfig({
   globals: [
     // Your globals here
   ],
-  plugins: [
-    seo({
-      collections: ["posts"],
-    }),
-  ],
+  plugins: [],
   typescript: {
     outputFile: path.resolve(__dirname, "../payload-types.ts"),
   },
