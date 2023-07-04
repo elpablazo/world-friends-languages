@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import payloadApi from "@/lib/axios";
 import { Post } from "@/payload-types";
 import Link from "next/link";
-const bannerSrc = "/images/demo/bannerCursos.jpg";
+const bannerSrc = "/images/demo/pexels-photo-346885.jpg";
 
 // Obtenemos los posts
 const getPosts = async () => {
