@@ -4,8 +4,8 @@ import Icon from "./Icon";
 
 export const Menu = ({ items, selected }: any) => {
   return (
-    <div className="flex">
-      <ul className="block relative w-full">
+    <div className="flex w-full">
+      <ul className="flex lg:block relative w-full">
         {items.map(({ href, label, icon }: any) => (
           <>
             <MenuItem
@@ -16,17 +16,17 @@ export const Menu = ({ items, selected }: any) => {
             >
               {label}
             </MenuItem>
-            <hr className="border-dark/5 hidden lg:block" />
+            <hr className="border-dark/10 hidden lg:block" />
           </>
         ))}
         <li
-          className={`flex flex-col lg:flex-row gap-4 w-full items-center px-2 lg:px-6 cursor-pointer mt-auto py-6`}
+          className={`flex flex-col lg:flex-row gap-2 py-2 lg:py-0 lg:gap-4 !z-[1] w-full lg:px-6 cursor-pointer items-center`}
           onClick={() => {
             alert("Cerrando sesión");
           }}
         >
           <Icon variant="salida" extraClassName="!h-8 !w-8" />
-          <span className="font-default text-center lg:text-left text-lg">
+          <span className="order-last font-default text-sm lg:text-lg block">
             Salir
           </span>
         </li>
@@ -39,16 +39,18 @@ export const MenuItem = ({ href, selected, children, icon }: any) => {
   return (
     <a
       href={href}
-      className="!block relative w-full text-center lg:text-left py-6"
+      className="!block relative w-full text-center lg:text-left lg:py-6"
     >
       {selected && <MenuSelectedIndicator />}
       <motion.li
-        className={`flex flex-col lg:flex-row gap-4 !z-[1] w-full px-2 lg:px-6 cursor-pointer items-center ${
+        className={`flex flex-col lg:flex-row gap-2 py-2 lg:py-0 lg:gap-4 !z-[1] w-full lg:px-6 cursor-pointer items-center ${
           selected && "!text-secondary"
         }`}
       >
         {icon && <Icon variant={icon} extraClassName="!h-8 !w-8" />}
-        <p className="order-last font-default text-lg ">{children}</p>
+        <span className="order-last font-default text-sm lg:text-lg block">
+          {children}
+        </span>
       </motion.li>
     </a>
   );
@@ -67,7 +69,7 @@ export const MenuSelectedIndicator = () => {
       layoutId="menuIndicator"
       className="absolute w-full h-full pointer-events-none inset-0"
     >
-      <div className="w-full h-full bg-gradient-to-l from-secondary/100 to-secondary/0 opacity-10"></div>
+      <div className="w-full h-full bg-gradient-to-l from-secondary/100 to-secondary/0 opacity-10" />
     </motion.div>
   );
 };

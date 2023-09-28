@@ -1,6 +1,7 @@
 import Image from "next/image";
 import AnuncioProfesores from "./AnuncioProfesores";
 import { Button } from "./ui/button";
+import CardClasesPersonalizadas from "./CardClasesPersonalizadas";
 
 const GridAnunciosLP = () => {
   return (
@@ -31,38 +32,7 @@ const GridAnunciosLP = () => {
         </div>
       </div>
 
-      <div
-        className="rounded-[32px_32px_32px_0px] flex flex-col gap-6 items-start justify-center self-stretch w-[329px] relative overflow-hidden"
-        style={{
-          background:
-            "var(--gradient, linear-gradient(87.28deg, rgba(0, 160, 170, 1.00) 0%,rgba(0, 170, 160, 1.00) 100%))",
-        }}
-      >
-        <div className="p-6 flex flex-col gap-6 items-start justify-start self-stretch relative">
-          <div className="flex flex-col gap-4 items-center justify-start self-stretch relative">
-            <div className="font-bold text-2xl text-light text-left relative self-stretch">
-              Clases en vivo
-            </div>
-
-            <div className="text-light text-left relative self-stretch">
-              Toma clases desde tu computadora o celular en una videollamada con
-              un profesor para resolver todas tus dudas.
-            </div>
-          </div>
-
-          <Button variant="secondary" className="w-full">
-            Empieza gratis
-          </Button>
-        </div>
-
-        <Image
-          className="self-stretch flex-1 relative"
-          src="/images/demo/videollamadaConProfesora.jpg"
-          alt="pexels-photo-by-g-l-i-k"
-          width={329}
-          height={329}
-        />
-      </div>
+      <CardClasesPersonalizadas />
     </div>
   );
 };

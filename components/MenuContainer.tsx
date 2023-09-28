@@ -29,20 +29,20 @@ export default function MenuContainer({ children = null }: any) {
 
   return (
     <div className="relative grid lg:grid-cols-12 gap-0">
-      <div className="lg:col-span-3 flex-col gap-6 py-2 lg:h-screen w-screen lg:w-auto fixed bottom-0 left-0 lg:relative z-[1]">
-        <motion.ul className="text-xs lg:text-xl flex lg:flex-col lg:gap-6 font-bold lg:pt-12 max-w-screen items-stretch bg-white text-primary">
-          <Link className="!block" href={"/admin"}>
+      <div className="lg:col-span-3 flex-col gap-6 lg:py-2 lg:h-screen w-screen lg:w-auto fixed bottom-0 left-0 lg:relative z-[1]">
+        <motion.div className="text-xs lg:text-xl flex lg:flex-col lg:gap-6 font-bold lg:pt-12 max-w-screen items-stretch bg-white text-primary">
+          <Link className="hidden lg:block" href={"/admin"}>
             <div className="relative flex items-center justify-center h-10">
               <Logo />
             </div>
           </Link>
-          <hr />
+          <hr className="hidden lg:block" />
           <Menu
             items={menuItems}
             // selected={"/dashboard/mis-compras"}
             selected={pathname}
           />
-        </motion.ul>
+        </motion.div>
       </div>
       <div
         className={`relative lg:col-span-9 pb-48 py-12 space-y-4 overflow-auto text-center items-center flex flex-col h-screen bg-gradient-to-br from-gray-light/50 via-transparent to-transparent`}
